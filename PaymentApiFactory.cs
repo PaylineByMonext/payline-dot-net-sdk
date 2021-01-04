@@ -26,7 +26,7 @@ namespace SDKPaylineDotNet
             {
                 return true;
             };
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
         }
 
         /// <summary>
@@ -87,13 +87,7 @@ namespace SDKPaylineDotNet
                 else
                     client.Url = PaylineSDKProperties.DirectPaymentAPIUrl;
             }
-            if (typeof(T) == typeof(MassPaymentAPI.MassPaymentAPI))
-            {
-                if (PaylineSDKProperties.Production)
-                    client.Url = PaylineSDKProperties.MassPaymentAPIUrlProd;
-                else
-                    client.Url = PaylineSDKProperties.MassPaymentAPIUrl;
-            }
+           
             if (typeof(T) == typeof(ExtendedAPI.ExtendedAPI))
             {
                 if (PaylineSDKProperties.Production)
@@ -112,10 +106,7 @@ namespace SDKPaylineDotNet
         {
             return GetApiClient<DirectPaymentAPI.DirectPaymentAPI>();
         }
-        public static MassPaymentAPI.MassPaymentAPI GetMassPaymentAPIClient()
-        {
-            return GetApiClient<MassPaymentAPI.MassPaymentAPI>();
-        }
+  
         public static ExtendedAPI.ExtendedAPI GetExtendedAPIClient()
         {
             return GetApiClient<ExtendedAPI.ExtendedAPI>();

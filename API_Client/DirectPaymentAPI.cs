@@ -621,23 +621,31 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doReset", RequestElementName="doResetRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doReset(string version, string transactionID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, out transaction transaction) {
+        public result doReset(string version, string transactionID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string amount, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string currency, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, out transaction transaction) {
             object[] results = this.Invoke("doReset", new object[] {
                         version,
                         transactionID,
                         comment,
-                        media});
+                        media,
+                        amount,
+                        currency,
+                        privateDataList,
+                        sequenceNumber});
             transaction = ((transaction)(results[1]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoReset(string version, string transactionID, string comment, string media, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoReset(string version, string transactionID, string comment, string media, string amount, string currency, privateData[] privateDataList, string sequenceNumber, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doReset", new object[] {
                         version,
                         transactionID,
                         comment,
-                        media}, callback, asyncState);
+                        media,
+                        amount,
+                        currency,
+                        privateDataList,
+                        sequenceNumber}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -648,12 +656,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doResetAsync(string version, string transactionID, string comment, string media) {
-            this.doResetAsync(version, transactionID, comment, media, null);
+        public void doResetAsync(string version, string transactionID, string comment, string media, string amount, string currency, privateData[] privateDataList, string sequenceNumber) {
+            this.doResetAsync(version, transactionID, comment, media, amount, currency, privateDataList, sequenceNumber, null);
         }
         
         /// <remarks/>
-        public void doResetAsync(string version, string transactionID, string comment, string media, object userState) {
+        public void doResetAsync(string version, string transactionID, string comment, string media, string amount, string currency, privateData[] privateDataList, string sequenceNumber, object userState) {
             if ((this.doResetOperationCompleted == null)) {
                 this.doResetOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoResetOperationCompleted);
             }
@@ -661,7 +669,11 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         version,
                         transactionID,
                         comment,
-                        media}, this.doResetOperationCompleted, userState);
+                        media,
+                        amount,
+                        currency,
+                        privateDataList,
+                        sequenceNumber}, this.doResetOperationCompleted, userState);
         }
         
         private void OndoResetOperationCompleted(object arg) {
@@ -749,7 +761,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("createWallet", RequestElementName="createWalletRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result createWallet(string version, string contractNumber, wallet wallet, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("contractNumberWallet", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref string[] contractNumberWalletList, out cardOut card, out extendedCardType extendedCard, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out fraudResultDetails fraudResultDetails) {
+        public result createWallet(string version, string contractNumber, wallet wallet, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("contractNumberWallet", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref string[] contractNumberWalletList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string transactionID, out cardOut card, out extendedCardType extendedCard, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out fraudResultDetails fraudResultDetails) {
             object[] results = this.Invoke("createWallet", new object[] {
                         version,
                         contractNumber,
@@ -759,7 +771,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList});
+                        contractNumberWalletList,
+                        transactionID});
             contractNumberWalletList = ((string[])(results[1]));
             card = ((cardOut)(results[2]));
             extendedCard = ((extendedCardType)(results[3]));
@@ -768,7 +781,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegincreateWallet(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegincreateWallet(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("createWallet", new object[] {
                         version,
                         contractNumber,
@@ -778,7 +791,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList}, callback, asyncState);
+                        contractNumberWalletList,
+                        transactionID}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -792,12 +806,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void createWalletAsync(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList) {
-            this.createWalletAsync(version, contractNumber, wallet, buyer, owner, privateDataList, authentication3DSecure, media, contractNumberWalletList, null);
+        public void createWalletAsync(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID) {
+            this.createWalletAsync(version, contractNumber, wallet, buyer, owner, privateDataList, authentication3DSecure, media, contractNumberWalletList, transactionID, null);
         }
         
         /// <remarks/>
-        public void createWalletAsync(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, object userState) {
+        public void createWalletAsync(string version, string contractNumber, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID, object userState) {
             if ((this.createWalletOperationCompleted == null)) {
                 this.createWalletOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateWalletOperationCompleted);
             }
@@ -810,7 +824,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList}, this.createWalletOperationCompleted, userState);
+                        contractNumberWalletList,
+                        transactionID}, this.createWalletOperationCompleted, userState);
         }
         
         private void OncreateWalletOperationCompleted(object arg) {
@@ -823,7 +838,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("updateWallet", RequestElementName="updateWalletRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result updateWallet(string version, string contractNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, wallet wallet, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("contractNumberWallet", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref string[] contractNumberWalletList, out cardOut card, out extendedCardType extendedCard) {
+        public result updateWallet(string version, string contractNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, wallet wallet, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("contractNumberWallet", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref string[] contractNumberWalletList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string transactionID, out cardOut card, out extendedCardType extendedCard) {
             object[] results = this.Invoke("updateWallet", new object[] {
                         version,
                         contractNumber,
@@ -834,7 +849,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList});
+                        contractNumberWalletList,
+                        transactionID});
             contractNumberWalletList = ((string[])(results[1]));
             card = ((cardOut)(results[2]));
             extendedCard = ((extendedCardType)(results[3]));
@@ -842,7 +858,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginupdateWallet(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginupdateWallet(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("updateWallet", new object[] {
                         version,
                         contractNumber,
@@ -853,7 +869,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList}, callback, asyncState);
+                        contractNumberWalletList,
+                        transactionID}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -866,12 +883,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void updateWalletAsync(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList) {
-            this.updateWalletAsync(version, contractNumber, cardInd, wallet, buyer, owner, privateDataList, authentication3DSecure, media, contractNumberWalletList, null);
+        public void updateWalletAsync(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID) {
+            this.updateWalletAsync(version, contractNumber, cardInd, wallet, buyer, owner, privateDataList, authentication3DSecure, media, contractNumberWalletList, transactionID, null);
         }
         
         /// <remarks/>
-        public void updateWalletAsync(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, object userState) {
+        public void updateWalletAsync(string version, string contractNumber, string cardInd, wallet wallet, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, string[] contractNumberWalletList, string transactionID, object userState) {
             if ((this.updateWalletOperationCompleted == null)) {
                 this.updateWalletOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateWalletOperationCompleted);
             }
@@ -885,7 +902,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         authentication3DSecure,
                         media,
-                        contractNumberWalletList}, this.updateWalletOperationCompleted, userState);
+                        contractNumberWalletList,
+                        transactionID}, this.updateWalletOperationCompleted, userState);
         }
         
         private void OnupdateWalletOperationCompleted(object arg) {
@@ -1123,7 +1141,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doImmediateWalletPayment", RequestElementName="doImmediateWalletPaymentRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doImmediateWalletPayment(string version, payment payment, order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cvx, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out transaction transaction, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authorization authorization) {
+        public result doImmediateWalletPayment(string version, payment payment, order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cvx, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref string linkedTransactionId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out transaction transaction, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authorization authorization) {
             object[] results = this.Invoke("doImmediateWalletPayment", new object[] {
                         version,
                         payment,
@@ -1132,17 +1150,21 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         cvx,
+                        recurring,
                         privateDataList,
                         media,
                         authentication3DSecure,
-                        subMerchant});
-            transaction = ((transaction)(results[1]));
-            authorization = ((authorization)(results[2]));
+                        subMerchant,
+                        linkedTransactionId});
+            authentication3DSecure = ((authentication3DSecure)(results[1]));
+            linkedTransactionId = ((string)(results[2]));
+            transaction = ((transaction)(results[3]));
+            authorization = ((authorization)(results[4]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoImmediateWalletPayment(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoImmediateWalletPayment(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doImmediateWalletPayment", new object[] {
                         version,
                         payment,
@@ -1151,27 +1173,31 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         cvx,
+                        recurring,
                         privateDataList,
                         media,
                         authentication3DSecure,
-                        subMerchant}, callback, asyncState);
+                        subMerchant,
+                        linkedTransactionId}, callback, asyncState);
         }
         
         /// <remarks/>
-        public result EnddoImmediateWalletPayment(System.IAsyncResult asyncResult, out transaction transaction, out authorization authorization) {
+        public result EnddoImmediateWalletPayment(System.IAsyncResult asyncResult, out authentication3DSecure authentication3DSecure, out string linkedTransactionId, out transaction transaction, out authorization authorization) {
             object[] results = this.EndInvoke(asyncResult);
-            transaction = ((transaction)(results[1]));
-            authorization = ((authorization)(results[2]));
+            authentication3DSecure = ((authentication3DSecure)(results[1]));
+            linkedTransactionId = ((string)(results[2]));
+            transaction = ((transaction)(results[3]));
+            authorization = ((authorization)(results[4]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant) {
-            this.doImmediateWalletPaymentAsync(version, payment, order, buyer, walletId, cardInd, cvx, privateDataList, media, authentication3DSecure, subMerchant, null);
+        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId) {
+            this.doImmediateWalletPaymentAsync(version, payment, order, buyer, walletId, cardInd, cvx, recurring, privateDataList, media, authentication3DSecure, subMerchant, linkedTransactionId, null);
         }
         
         /// <remarks/>
-        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, object userState) {
+        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId, object userState) {
             if ((this.doImmediateWalletPaymentOperationCompleted == null)) {
                 this.doImmediateWalletPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoImmediateWalletPaymentOperationCompleted);
             }
@@ -1183,10 +1209,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         cvx,
+                        recurring,
                         privateDataList,
                         media,
                         authentication3DSecure,
-                        subMerchant}, this.doImmediateWalletPaymentOperationCompleted, userState);
+                        subMerchant,
+                        linkedTransactionId}, this.doImmediateWalletPaymentOperationCompleted, userState);
         }
         
         private void OndoImmediateWalletPaymentOperationCompleted(object arg) {
@@ -1199,7 +1227,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doScheduledWalletPayment", RequestElementName="doScheduledWalletPaymentRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doScheduledWalletPayment(string version, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string orderRef, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string orderDate, string scheduledDate, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, out string paymentRecordId) {
+        public result doScheduledWalletPayment(string version, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string orderRef, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string orderDate, string scheduledDate, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string linkedTransactionId, out string paymentRecordId) {
             object[] results = this.Invoke("doScheduledWalletPayment", new object[] {
                         version,
                         payment,
@@ -1209,15 +1237,34 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         order,
+                        recurring,
+                        authentication3DSecure,
                         privateDataList,
                         media,
-                        subMerchant});
+                        subMerchant,
+                        linkedTransactionId});
             paymentRecordId = ((string)(results[1]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoScheduledWalletPayment(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, order order, privateData[] privateDataList, string media, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoScheduledWalletPayment(
+                    string version, 
+                    payment payment, 
+                    string orderRef, 
+                    string orderDate, 
+                    string scheduledDate, 
+                    string walletId, 
+                    string cardInd, 
+                    order order, 
+                    recurring recurring, 
+                    authentication3DSecure authentication3DSecure, 
+                    privateData[] privateDataList, 
+                    string media, 
+                    subMerchant subMerchant, 
+                    string linkedTransactionId, 
+                    System.AsyncCallback callback, 
+                    object asyncState) {
             return this.BeginInvoke("doScheduledWalletPayment", new object[] {
                         version,
                         payment,
@@ -1227,9 +1274,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         order,
+                        recurring,
+                        authentication3DSecure,
                         privateDataList,
                         media,
-                        subMerchant}, callback, asyncState);
+                        subMerchant,
+                        linkedTransactionId}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -1240,12 +1290,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doScheduledWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, order order, privateData[] privateDataList, string media, subMerchant subMerchant) {
-            this.doScheduledWalletPaymentAsync(version, payment, orderRef, orderDate, scheduledDate, walletId, cardInd, order, privateDataList, media, subMerchant, null);
+        public void doScheduledWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, order order, recurring recurring, authentication3DSecure authentication3DSecure, privateData[] privateDataList, string media, subMerchant subMerchant, string linkedTransactionId) {
+            this.doScheduledWalletPaymentAsync(version, payment, orderRef, orderDate, scheduledDate, walletId, cardInd, order, recurring, authentication3DSecure, privateDataList, media, subMerchant, linkedTransactionId, null);
         }
         
         /// <remarks/>
-        public void doScheduledWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, order order, privateData[] privateDataList, string media, subMerchant subMerchant, object userState) {
+        public void doScheduledWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, order order, recurring recurring, authentication3DSecure authentication3DSecure, privateData[] privateDataList, string media, subMerchant subMerchant, string linkedTransactionId, object userState) {
             if ((this.doScheduledWalletPaymentOperationCompleted == null)) {
                 this.doScheduledWalletPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoScheduledWalletPaymentOperationCompleted);
             }
@@ -1258,9 +1308,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletId,
                         cardInd,
                         order,
+                        recurring,
+                        authentication3DSecure,
                         privateDataList,
                         media,
-                        subMerchant}, this.doScheduledWalletPaymentOperationCompleted, userState);
+                        subMerchant,
+                        linkedTransactionId}, this.doScheduledWalletPaymentOperationCompleted, userState);
         }
         
         private void OndoScheduledWalletPaymentOperationCompleted(object arg) {
@@ -2319,43 +2372,47 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doBankTransfer", RequestElementName="doBankTransferRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doBankTransfer(string version, payment payment, creditor creditor, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string transactionID, string orderID, out transaction transaction) {
+        public result doBankTransfer(string version, payment payment, creditor creditor, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string transactionID, string orderID, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref privateData[] privateDataList, out transaction transaction) {
             object[] results = this.Invoke("doBankTransfer", new object[] {
                         version,
                         payment,
                         creditor,
                         comment,
                         transactionID,
-                        orderID});
-            transaction = ((transaction)(results[1]));
+                        orderID,
+                        privateDataList});
+            privateDataList = ((privateData[])(results[1]));
+            transaction = ((transaction)(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoBankTransfer(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoBankTransfer(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID, privateData[] privateDataList, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doBankTransfer", new object[] {
                         version,
                         payment,
                         creditor,
                         comment,
                         transactionID,
-                        orderID}, callback, asyncState);
+                        orderID,
+                        privateDataList}, callback, asyncState);
         }
         
         /// <remarks/>
-        public result EnddoBankTransfer(System.IAsyncResult asyncResult, out transaction transaction) {
+        public result EnddoBankTransfer(System.IAsyncResult asyncResult, out privateData[] privateDataList, out transaction transaction) {
             object[] results = this.EndInvoke(asyncResult);
-            transaction = ((transaction)(results[1]));
+            privateDataList = ((privateData[])(results[1]));
+            transaction = ((transaction)(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public void doBankTransferAsync(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID) {
-            this.doBankTransferAsync(version, payment, creditor, comment, transactionID, orderID, null);
+        public void doBankTransferAsync(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID, privateData[] privateDataList) {
+            this.doBankTransferAsync(version, payment, creditor, comment, transactionID, orderID, privateDataList, null);
         }
         
         /// <remarks/>
-        public void doBankTransferAsync(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID, object userState) {
+        public void doBankTransferAsync(string version, payment payment, creditor creditor, string comment, string transactionID, string orderID, privateData[] privateDataList, object userState) {
             if ((this.doBankTransferOperationCompleted == null)) {
                 this.doBankTransferOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoBankTransferOperationCompleted);
             }
@@ -2365,7 +2422,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         creditor,
                         comment,
                         transactionID,
-                        orderID}, this.doBankTransferOperationCompleted, userState);
+                        orderID,
+                        privateDataList}, this.doBankTransferOperationCompleted, userState);
         }
         
         private void OndoBankTransferOperationCompleted(object arg) {
@@ -2514,6 +2572,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string contractNumber {
             get {
                 return this.contractNumberField;
@@ -3010,1225 +3069,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.secretAnswerField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class customPaymentPageCode {
-        
-        private string codeField;
-        
-        private string labelField;
-        
-        private string typeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string code {
-            get {
-                return this.codeField;
-            }
-            set {
-                this.codeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string label {
-            get {
-                return this.labelField;
-            }
-            set {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class virtualTerminalFunction {
-        
-        private virtualTerminalFunctionFunction functionField;
-        
-        private string labelField;
-        
-        private virtualTerminalFunctionFunctionParameter[] functionParameterField;
-        
-        /// <remarks/>
-        public virtualTerminalFunctionFunction function {
-            get {
-                return this.functionField;
-            }
-            set {
-                this.functionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string label {
-            get {
-                return this.labelField;
-            }
-            set {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("functionParameter")]
-        public virtualTerminalFunctionFunctionParameter[] functionParameter {
-            get {
-                return this.functionParameterField;
-            }
-            set {
-                this.functionParameterField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
-    public enum virtualTerminalFunctionFunction {
-        
-        /// <remarks/>
-        simplePayment,
-        
-        /// <remarks/>
-        walletCreation,
-        
-        /// <remarks/>
-        nXPayment,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
-    public partial class virtualTerminalFunctionFunctionParameter {
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class virtualTerminal {
-        
-        private string labelField;
-        
-        private int inactivityDelayField;
-        
-        private string logoField;
-        
-        private virtualTerminalFunction[] functionsField;
-        
-        public virtualTerminal() {
-            this.inactivityDelayField = 10;
-        }
-        
-        /// <remarks/>
-        public string label {
-            get {
-                return this.labelField;
-            }
-            set {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int inactivityDelay {
-            get {
-                return this.inactivityDelayField;
-            }
-            set {
-                this.inactivityDelayField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string logo {
-            get {
-                return this.logoField;
-            }
-            set {
-                this.logoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("function", IsNullable=false)]
-        public virtualTerminalFunction[] functions {
-            get {
-                return this.functionsField;
-            }
-            set {
-                this.functionsField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class contribution {
-        
-        private bool enableField;
-        
-        private string typeField;
-        
-        private string valueField;
-        
-        private string nbFreeTransactionField;
-        
-        private string minAmountTransactionField;
-        
-        private string maxAmountTransactionField;
-        
-        /// <remarks/>
-        public bool enable {
-            get {
-                return this.enableField;
-            }
-            set {
-                this.enableField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string value {
-            get {
-                return this.valueField;
-            }
-            set {
-                this.valueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string nbFreeTransaction {
-            get {
-                return this.nbFreeTransactionField;
-            }
-            set {
-                this.nbFreeTransactionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string minAmountTransaction {
-            get {
-                return this.minAmountTransactionField;
-            }
-            set {
-                this.minAmountTransactionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string maxAmountTransaction {
-            get {
-                return this.maxAmountTransactionField;
-            }
-            set {
-                this.maxAmountTransactionField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class rib {
-        
-        private string tellerCodeField;
-        
-        private string accountNumberField;
-        
-        private string keyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string tellerCode {
-            get {
-                return this.tellerCodeField;
-            }
-            set {
-                this.tellerCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string accountNumber {
-            get {
-                return this.accountNumberField;
-            }
-            set {
-                this.accountNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string key {
-            get {
-                return this.keyField;
-            }
-            set {
-                this.keyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class iban {
-        
-        private string countryCodeField;
-        
-        private string checkKeyField;
-        
-        private string bBANField;
-        
-        private string bICField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string CountryCode {
-            get {
-                return this.countryCodeField;
-            }
-            set {
-                this.countryCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string checkKey {
-            get {
-                return this.checkKeyField;
-            }
-            set {
-                this.checkKeyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string BBAN {
-            get {
-                return this.bBANField;
-            }
-            set {
-                this.bBANField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string BIC {
-            get {
-                return this.bICField;
-            }
-            set {
-                this.bICField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class bankAccount {
-        
-        private string bankCodeField;
-        
-        private string bankNumberField;
-        
-        private iban ibanField;
-        
-        private rib ribField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string bankCode {
-            get {
-                return this.bankCodeField;
-            }
-            set {
-                this.bankCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string bankNumber {
-            get {
-                return this.bankNumberField;
-            }
-            set {
-                this.bankNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public iban iban {
-            get {
-                return this.ibanField;
-            }
-            set {
-                this.ibanField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public rib rib {
-            get {
-                return this.ribField;
-            }
-            set {
-                this.ribField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class technicalData {
-        
-        private string terminalNumberField;
-        
-        private string gTInstanceField;
-        
-        private string paymentProfilField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string terminalNumber {
-            get {
-                return this.terminalNumberField;
-            }
-            set {
-                this.terminalNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string GTInstance {
-            get {
-                return this.gTInstanceField;
-            }
-            set {
-                this.gTInstanceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string paymentProfil {
-            get {
-                return this.paymentProfilField;
-            }
-            set {
-                this.paymentProfilField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class contract {
-        
-        private string cardTypeField;
-        
-        private string labelField;
-        
-        private string contractNumberField;
-        
-        private string currencyField;
-        
-        private contractSettlementType settlementTypeField;
-        
-        private System.Nullable<int> maxAmountPerTransactionField;
-        
-        private technicalData technicalDataField;
-        
-        private bankAccount bankAccountField;
-        
-        private interlocutor acquirerInterlocutorField;
-        
-        private string descriptionField;
-        
-        private bool logoEnableField;
-        
-        private string smallLogoMimeField;
-        
-        private byte[] smallLogoField;
-        
-        private string normalLogoMimeField;
-        
-        private byte[] normalLogoField;
-        
-        private contribution contributionField;
-        
-        private string enrolment3DSField;
-        
-        public contract() {
-            this.settlementTypeField = contractSettlementType.Manual;
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string cardType {
-            get {
-                return this.cardTypeField;
-            }
-            set {
-                this.cardTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string label {
-            get {
-                return this.labelField;
-            }
-            set {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string contractNumber {
-            get {
-                return this.contractNumberField;
-            }
-            set {
-                this.contractNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string currency {
-            get {
-                return this.currencyField;
-            }
-            set {
-                this.currencyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public contractSettlementType settlementType {
-            get {
-                return this.settlementTypeField;
-            }
-            set {
-                this.settlementTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> maxAmountPerTransaction {
-            get {
-                return this.maxAmountPerTransactionField;
-            }
-            set {
-                this.maxAmountPerTransactionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public technicalData technicalData {
-            get {
-                return this.technicalDataField;
-            }
-            set {
-                this.technicalDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public bankAccount bankAccount {
-            get {
-                return this.bankAccountField;
-            }
-            set {
-                this.bankAccountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public interlocutor acquirerInterlocutor {
-            get {
-                return this.acquirerInterlocutorField;
-            }
-            set {
-                this.acquirerInterlocutorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool logoEnable {
-            get {
-                return this.logoEnableField;
-            }
-            set {
-                this.logoEnableField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string smallLogoMime {
-            get {
-                return this.smallLogoMimeField;
-            }
-            set {
-                this.smallLogoMimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] smallLogo {
-            get {
-                return this.smallLogoField;
-            }
-            set {
-                this.smallLogoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string normalLogoMime {
-            get {
-                return this.normalLogoMimeField;
-            }
-            set {
-                this.normalLogoMimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] normalLogo {
-            get {
-                return this.normalLogoField;
-            }
-            set {
-                this.normalLogoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public contribution contribution {
-            get {
-                return this.contributionField;
-            }
-            set {
-                this.contributionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string enrolment3DS {
-            get {
-                return this.enrolment3DSField;
-            }
-            set {
-                this.enrolment3DSField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
-    public enum contractSettlementType {
-        
-        /// <remarks/>
-        Manual,
-        
-        /// <remarks/>
-        Now,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("1Day")]
-        Item1Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("2Day")]
-        Item2Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("3Day")]
-        Item3Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("4Day")]
-        Item4Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("5Day")]
-        Item5Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("6Day")]
-        Item6Day,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("7Day")]
-        Item7Day,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class interlocutor {
-        
-        private string firstNameField;
-        
-        private string lastNameField;
-        
-        private string emailField;
-        
-        private string phoneField;
-        
-        private string mobileField;
-        
-        private string faxField;
-        
-        private addressInterlocutor addressInterlocutorField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string firstName {
-            get {
-                return this.firstNameField;
-            }
-            set {
-                this.firstNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string lastName {
-            get {
-                return this.lastNameField;
-            }
-            set {
-                this.lastNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string phone {
-            get {
-                return this.phoneField;
-            }
-            set {
-                this.phoneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string mobile {
-            get {
-                return this.mobileField;
-            }
-            set {
-                this.mobileField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string fax {
-            get {
-                return this.faxField;
-            }
-            set {
-                this.faxField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public addressInterlocutor addressInterlocutor {
-            get {
-                return this.addressInterlocutorField;
-            }
-            set {
-                this.addressInterlocutorField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class addressInterlocutor {
-        
-        private string street1Field;
-        
-        private string street2Field;
-        
-        private string cityField;
-        
-        private string zipCodeField;
-        
-        private string stateField;
-        
-        private string countryField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string street1 {
-            get {
-                return this.street1Field;
-            }
-            set {
-                this.street1Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string street2 {
-            get {
-                return this.street2Field;
-            }
-            set {
-                this.street2Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string city {
-            get {
-                return this.cityField;
-            }
-            set {
-                this.cityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string zipCode {
-            get {
-                return this.zipCodeField;
-            }
-            set {
-                this.zipCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string state {
-            get {
-                return this.stateField;
-            }
-            set {
-                this.stateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string country {
-            get {
-                return this.countryField;
-            }
-            set {
-                this.countryField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class ticketSend {
-        
-        private System.Nullable<bool> toBuyerField;
-        
-        private System.Nullable<bool> toMerchantField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> toBuyer {
-            get {
-                return this.toBuyerField;
-            }
-            set {
-                this.toBuyerField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> toMerchant {
-            get {
-                return this.toMerchantField;
-            }
-            set {
-                this.toMerchantField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class pointOfSell {
-        
-        private string siretField;
-        
-        private string codeMccField;
-        
-        private string labelField;
-        
-        private string webmasterEmailField;
-        
-        private string commentsField;
-        
-        private string webstoreURLField;
-        
-        private string notificationURLField;
-        
-        private string privateLifeURLField;
-        
-        private string saleCondURLField;
-        
-        private System.Nullable<bool> buyerMustAcceptSaleCondField;
-        
-        private bool buyerMustAcceptSaleCondFieldSpecified;
-        
-        private System.Nullable<bool> endOfPaymentRedirectionField;
-        
-        private bool endOfPaymentRedirectionFieldSpecified;
-        
-        private ticketSend ticketSendField;
-        
-        private contract[] contractsField;
-        
-        private virtualTerminal virtualTerminalField;
-        
-        private customPaymentPageCode[] customPaymentPageCodeListField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string siret {
-            get {
-                return this.siretField;
-            }
-            set {
-                this.siretField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string codeMcc {
-            get {
-                return this.codeMccField;
-            }
-            set {
-                this.codeMccField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string label {
-            get {
-                return this.labelField;
-            }
-            set {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string webmasterEmail {
-            get {
-                return this.webmasterEmailField;
-            }
-            set {
-                this.webmasterEmailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string comments {
-            get {
-                return this.commentsField;
-            }
-            set {
-                this.commentsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string webstoreURL {
-            get {
-                return this.webstoreURLField;
-            }
-            set {
-                this.webstoreURLField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string notificationURL {
-            get {
-                return this.notificationURLField;
-            }
-            set {
-                this.notificationURLField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string privateLifeURL {
-            get {
-                return this.privateLifeURLField;
-            }
-            set {
-                this.privateLifeURLField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string saleCondURL {
-            get {
-                return this.saleCondURLField;
-            }
-            set {
-                this.saleCondURLField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> buyerMustAcceptSaleCond {
-            get {
-                return this.buyerMustAcceptSaleCondField;
-            }
-            set {
-                this.buyerMustAcceptSaleCondField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool buyerMustAcceptSaleCondSpecified {
-            get {
-                return this.buyerMustAcceptSaleCondFieldSpecified;
-            }
-            set {
-                this.buyerMustAcceptSaleCondFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> endOfPaymentRedirection {
-            get {
-                return this.endOfPaymentRedirectionField;
-            }
-            set {
-                this.endOfPaymentRedirectionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool endOfPaymentRedirectionSpecified {
-            get {
-                return this.endOfPaymentRedirectionFieldSpecified;
-            }
-            set {
-                this.endOfPaymentRedirectionFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public ticketSend ticketSend {
-            get {
-                return this.ticketSendField;
-            }
-            set {
-                this.ticketSendField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public contract[] contracts {
-            get {
-                return this.contractsField;
-            }
-            set {
-                this.contractsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public virtualTerminal virtualTerminal {
-            get {
-                return this.virtualTerminalField;
-            }
-            set {
-                this.virtualTerminalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public customPaymentPageCode[] customPaymentPageCodeList {
-            get {
-                return this.customPaymentPageCodeListField;
-            }
-            set {
-                this.customPaymentPageCodeListField = value;
             }
         }
     }
@@ -4887,6 +3727,20 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private avs avsField;
         
+        private string customerIdField;
+        
+        private string typeField;
+        
+        private string orderReferenceField;
+        
+        private payment paymentField;
+        
+        private pointOfSell pointOfSellField;
+        
+        private cardOut cardField;
+        
+        private extendedCardType extendedCardField;
+        
         /// <remarks/>
         public string id {
             get {
@@ -5049,6 +3903,82 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                 this.avsField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string customerId {
+            get {
+                return this.customerIdField;
+            }
+            set {
+                this.customerIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string orderReference {
+            get {
+                return this.orderReferenceField;
+            }
+            set {
+                this.orderReferenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public payment payment {
+            get {
+                return this.paymentField;
+            }
+            set {
+                this.paymentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public pointOfSell pointOfSell {
+            get {
+                return this.pointOfSellField;
+            }
+            set {
+                this.pointOfSellField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public cardOut card {
+            get {
+                return this.cardField;
+            }
+            set {
+                this.cardField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public extendedCardType extendedCard {
+            get {
+                return this.extendedCardField;
+            }
+            set {
+                this.extendedCardField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -5209,11 +4139,1434 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class pointOfSell {
+        
+        private string idField;
+        
+        private string siretField;
+        
+        private string codeMccField;
+        
+        private string labelField;
+        
+        private string webmasterEmailField;
+        
+        private string commentsField;
+        
+        private string webstoreURLField;
+        
+        private string notificationURLField;
+        
+        private string privateLifeURLField;
+        
+        private string saleCondURLField;
+        
+        private System.Nullable<bool> buyerMustAcceptSaleCondField;
+        
+        private bool buyerMustAcceptSaleCondFieldSpecified;
+        
+        private System.Nullable<bool> endOfPaymentRedirectionField;
+        
+        private bool endOfPaymentRedirectionFieldSpecified;
+        
+        private ticketSend ticketSendField;
+        
+        private contract[] contractsField;
+        
+        private virtualTerminal virtualTerminalField;
+        
+        private customPaymentPageCode[] customPaymentPageCodeListField;
+        
+        private string referenceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string siret {
+            get {
+                return this.siretField;
+            }
+            set {
+                this.siretField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string codeMcc {
+            get {
+                return this.codeMccField;
+            }
+            set {
+                this.codeMccField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string webmasterEmail {
+            get {
+                return this.webmasterEmailField;
+            }
+            set {
+                this.webmasterEmailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string comments {
+            get {
+                return this.commentsField;
+            }
+            set {
+                this.commentsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string webstoreURL {
+            get {
+                return this.webstoreURLField;
+            }
+            set {
+                this.webstoreURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string notificationURL {
+            get {
+                return this.notificationURLField;
+            }
+            set {
+                this.notificationURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string privateLifeURL {
+            get {
+                return this.privateLifeURLField;
+            }
+            set {
+                this.privateLifeURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string saleCondURL {
+            get {
+                return this.saleCondURLField;
+            }
+            set {
+                this.saleCondURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> buyerMustAcceptSaleCond {
+            get {
+                return this.buyerMustAcceptSaleCondField;
+            }
+            set {
+                this.buyerMustAcceptSaleCondField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool buyerMustAcceptSaleCondSpecified {
+            get {
+                return this.buyerMustAcceptSaleCondFieldSpecified;
+            }
+            set {
+                this.buyerMustAcceptSaleCondFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> endOfPaymentRedirection {
+            get {
+                return this.endOfPaymentRedirectionField;
+            }
+            set {
+                this.endOfPaymentRedirectionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool endOfPaymentRedirectionSpecified {
+            get {
+                return this.endOfPaymentRedirectionFieldSpecified;
+            }
+            set {
+                this.endOfPaymentRedirectionFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public ticketSend ticketSend {
+            get {
+                return this.ticketSendField;
+            }
+            set {
+                this.ticketSendField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public contract[] contracts {
+            get {
+                return this.contractsField;
+            }
+            set {
+                this.contractsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public virtualTerminal virtualTerminal {
+            get {
+                return this.virtualTerminalField;
+            }
+            set {
+                this.virtualTerminalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public customPaymentPageCode[] customPaymentPageCodeList {
+            get {
+                return this.customPaymentPageCodeListField;
+            }
+            set {
+                this.customPaymentPageCodeListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string reference {
+            get {
+                return this.referenceField;
+            }
+            set {
+                this.referenceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class ticketSend {
+        
+        private System.Nullable<bool> toBuyerField;
+        
+        private System.Nullable<bool> toMerchantField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> toBuyer {
+            get {
+                return this.toBuyerField;
+            }
+            set {
+                this.toBuyerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> toMerchant {
+            get {
+                return this.toMerchantField;
+            }
+            set {
+                this.toMerchantField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class contract {
+        
+        private string cardTypeField;
+        
+        private string labelField;
+        
+        private string contractNumberField;
+        
+        private string currencyField;
+        
+        private contractSettlementType settlementTypeField;
+        
+        private System.Nullable<int> maxAmountPerTransactionField;
+        
+        private technicalData technicalDataField;
+        
+        private bankAccount bankAccountField;
+        
+        private interlocutor acquirerInterlocutorField;
+        
+        private string descriptionField;
+        
+        private bool logoEnableField;
+        
+        private string smallLogoMimeField;
+        
+        private byte[] smallLogoField;
+        
+        private string normalLogoMimeField;
+        
+        private byte[] normalLogoField;
+        
+        private contribution contributionField;
+        
+        private string enrolment3DSField;
+        
+        public contract() {
+            this.settlementTypeField = contractSettlementType.Manual;
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string cardType {
+            get {
+                return this.cardTypeField;
+            }
+            set {
+                this.cardTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string contractNumber {
+            get {
+                return this.contractNumberField;
+            }
+            set {
+                this.contractNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string currency {
+            get {
+                return this.currencyField;
+            }
+            set {
+                this.currencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public contractSettlementType settlementType {
+            get {
+                return this.settlementTypeField;
+            }
+            set {
+                this.settlementTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> maxAmountPerTransaction {
+            get {
+                return this.maxAmountPerTransactionField;
+            }
+            set {
+                this.maxAmountPerTransactionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public technicalData technicalData {
+            get {
+                return this.technicalDataField;
+            }
+            set {
+                this.technicalDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public bankAccount bankAccount {
+            get {
+                return this.bankAccountField;
+            }
+            set {
+                this.bankAccountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public interlocutor acquirerInterlocutor {
+            get {
+                return this.acquirerInterlocutorField;
+            }
+            set {
+                this.acquirerInterlocutorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool logoEnable {
+            get {
+                return this.logoEnableField;
+            }
+            set {
+                this.logoEnableField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string smallLogoMime {
+            get {
+                return this.smallLogoMimeField;
+            }
+            set {
+                this.smallLogoMimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] smallLogo {
+            get {
+                return this.smallLogoField;
+            }
+            set {
+                this.smallLogoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string normalLogoMime {
+            get {
+                return this.normalLogoMimeField;
+            }
+            set {
+                this.normalLogoMimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] normalLogo {
+            get {
+                return this.normalLogoField;
+            }
+            set {
+                this.normalLogoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public contribution contribution {
+            get {
+                return this.contributionField;
+            }
+            set {
+                this.contributionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string enrolment3DS {
+            get {
+                return this.enrolment3DSField;
+            }
+            set {
+                this.enrolment3DSField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
+    public enum contractSettlementType {
+        
+        /// <remarks/>
+        Manual,
+        
+        /// <remarks/>
+        Now,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("1Day")]
+        Item1Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("2Day")]
+        Item2Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("3Day")]
+        Item3Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("4Day")]
+        Item4Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("5Day")]
+        Item5Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("6Day")]
+        Item6Day,
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("7Day")]
+        Item7Day,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class technicalData {
+        
+        private string terminalNumberField;
+        
+        private string gTInstanceField;
+        
+        private string paymentProfilField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string terminalNumber {
+            get {
+                return this.terminalNumberField;
+            }
+            set {
+                this.terminalNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string GTInstance {
+            get {
+                return this.gTInstanceField;
+            }
+            set {
+                this.gTInstanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string paymentProfil {
+            get {
+                return this.paymentProfilField;
+            }
+            set {
+                this.paymentProfilField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class bankAccount {
+        
+        private string bankCodeField;
+        
+        private string bankNumberField;
+        
+        private iban ibanField;
+        
+        private rib ribField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string bankCode {
+            get {
+                return this.bankCodeField;
+            }
+            set {
+                this.bankCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string bankNumber {
+            get {
+                return this.bankNumberField;
+            }
+            set {
+                this.bankNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public iban iban {
+            get {
+                return this.ibanField;
+            }
+            set {
+                this.ibanField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public rib rib {
+            get {
+                return this.ribField;
+            }
+            set {
+                this.ribField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class iban {
+        
+        private string countryCodeField;
+        
+        private string checkKeyField;
+        
+        private string bBANField;
+        
+        private string bICField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string CountryCode {
+            get {
+                return this.countryCodeField;
+            }
+            set {
+                this.countryCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string checkKey {
+            get {
+                return this.checkKeyField;
+            }
+            set {
+                this.checkKeyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string BBAN {
+            get {
+                return this.bBANField;
+            }
+            set {
+                this.bBANField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string BIC {
+            get {
+                return this.bICField;
+            }
+            set {
+                this.bICField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class rib {
+        
+        private string tellerCodeField;
+        
+        private string accountNumberField;
+        
+        private string keyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string tellerCode {
+            get {
+                return this.tellerCodeField;
+            }
+            set {
+                this.tellerCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string accountNumber {
+            get {
+                return this.accountNumberField;
+            }
+            set {
+                this.accountNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class interlocutor {
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string emailField;
+        
+        private string phoneField;
+        
+        private string mobileField;
+        
+        private string faxField;
+        
+        private addressInterlocutor addressInterlocutorField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string firstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string lastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string phone {
+            get {
+                return this.phoneField;
+            }
+            set {
+                this.phoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string mobile {
+            get {
+                return this.mobileField;
+            }
+            set {
+                this.mobileField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string fax {
+            get {
+                return this.faxField;
+            }
+            set {
+                this.faxField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public addressInterlocutor addressInterlocutor {
+            get {
+                return this.addressInterlocutorField;
+            }
+            set {
+                this.addressInterlocutorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class addressInterlocutor {
+        
+        private string street1Field;
+        
+        private string street2Field;
+        
+        private string cityField;
+        
+        private string zipCodeField;
+        
+        private string stateField;
+        
+        private string countryField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string street1 {
+            get {
+                return this.street1Field;
+            }
+            set {
+                this.street1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string street2 {
+            get {
+                return this.street2Field;
+            }
+            set {
+                this.street2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string city {
+            get {
+                return this.cityField;
+            }
+            set {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string zipCode {
+            get {
+                return this.zipCodeField;
+            }
+            set {
+                this.zipCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string state {
+            get {
+                return this.stateField;
+            }
+            set {
+                this.stateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string country {
+            get {
+                return this.countryField;
+            }
+            set {
+                this.countryField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class contribution {
+        
+        private bool enableField;
+        
+        private string typeField;
+        
+        private string valueField;
+        
+        private string nbFreeTransactionField;
+        
+        private string minAmountTransactionField;
+        
+        private string maxAmountTransactionField;
+        
+        /// <remarks/>
+        public bool enable {
+            get {
+                return this.enableField;
+            }
+            set {
+                this.enableField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string nbFreeTransaction {
+            get {
+                return this.nbFreeTransactionField;
+            }
+            set {
+                this.nbFreeTransactionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string minAmountTransaction {
+            get {
+                return this.minAmountTransactionField;
+            }
+            set {
+                this.minAmountTransactionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string maxAmountTransaction {
+            get {
+                return this.maxAmountTransactionField;
+            }
+            set {
+                this.maxAmountTransactionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class virtualTerminal {
+        
+        private string labelField;
+        
+        private int inactivityDelayField;
+        
+        private string logoField;
+        
+        private virtualTerminalFunction[] functionsField;
+        
+        public virtualTerminal() {
+            this.inactivityDelayField = 10;
+        }
+        
+        /// <remarks/>
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int inactivityDelay {
+            get {
+                return this.inactivityDelayField;
+            }
+            set {
+                this.inactivityDelayField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string logo {
+            get {
+                return this.logoField;
+            }
+            set {
+                this.logoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("function", IsNullable=false)]
+        public virtualTerminalFunction[] functions {
+            get {
+                return this.functionsField;
+            }
+            set {
+                this.functionsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class virtualTerminalFunction {
+        
+        private virtualTerminalFunctionFunction functionField;
+        
+        private string labelField;
+        
+        private virtualTerminalFunctionFunctionParameter[] functionParameterField;
+        
+        /// <remarks/>
+        public virtualTerminalFunctionFunction function {
+            get {
+                return this.functionField;
+            }
+            set {
+                this.functionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("functionParameter")]
+        public virtualTerminalFunctionFunctionParameter[] functionParameter {
+            get {
+                return this.functionParameterField;
+            }
+            set {
+                this.functionParameterField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
+    public enum virtualTerminalFunctionFunction {
+        
+        /// <remarks/>
+        simplePayment,
+        
+        /// <remarks/>
+        walletCreation,
+        
+        /// <remarks/>
+        nXPayment,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://obj.ws.payline.experian.com")]
+    public partial class virtualTerminalFunctionFunctionParameter {
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class customPaymentPageCode {
+        
+        private string codeField;
+        
+        private string labelField;
+        
+        private string typeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string label {
+            get {
+                return this.labelField;
+            }
+            set {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class cardOut {
+        
+        private string numberField;
+        
+        private string typeField;
+        
+        private string expirationDateField;
+        
+        private string cardholderField;
+        
+        private string tokenField;
+        
+        private string panTypeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string number {
+            get {
+                return this.numberField;
+            }
+            set {
+                this.numberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string expirationDate {
+            get {
+                return this.expirationDateField;
+            }
+            set {
+                this.expirationDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string cardholder {
+            get {
+                return this.cardholderField;
+            }
+            set {
+                this.cardholderField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string token {
+            get {
+                return this.tokenField;
+            }
+            set {
+                this.tokenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string panType {
+            get {
+                return this.panTypeField;
+            }
+            set {
+                this.panTypeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class extendedCardType {
+        
+        private string countryField;
+        
+        private string isCvdField;
+        
+        private string bankField;
+        
+        private string typeField;
+        
+        private string networkField;
+        
+        private string productField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string country {
+            get {
+                return this.countryField;
+            }
+            set {
+                this.countryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string isCvd {
+            get {
+                return this.isCvdField;
+            }
+            set {
+                this.isCvdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string bank {
+            get {
+                return this.bankField;
+            }
+            set {
+                this.bankField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string network {
+            get {
+                return this.networkField;
+            }
+            set {
+                this.networkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string product {
+            get {
+                return this.productField;
+            }
+            set {
+                this.productField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
     public partial class authorization {
         
         private string numberField;
         
         private string dateField;
+        
+        private string authorizedAmountField;
+        
+        private string authorizedCurrencyField;
         
         /// <remarks/>
         public string number {
@@ -5232,6 +5585,28 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.dateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string authorizedAmount {
+            get {
+                return this.authorizedAmountField;
+            }
+            set {
+                this.authorizedAmountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string authorizedCurrency {
+            get {
+                return this.authorizedCurrencyField;
+            }
+            set {
+                this.authorizedCurrencyField = value;
             }
         }
     }
@@ -5769,7 +6144,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public paymentData paymentData {
             get {
                 return this.paymentDataField;
@@ -5821,93 +6195,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.tokenDataField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class extendedCardType {
-        
-        private string countryField;
-        
-        private string isCvdField;
-        
-        private string bankField;
-        
-        private string typeField;
-        
-        private string networkField;
-        
-        private string productField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string country {
-            get {
-                return this.countryField;
-            }
-            set {
-                this.countryField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string isCvd {
-            get {
-                return this.isCvdField;
-            }
-            set {
-                this.isCvdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string bank {
-            get {
-                return this.bankField;
-            }
-            set {
-                this.bankField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string network {
-            get {
-                return this.networkField;
-            }
-            set {
-                this.networkField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string product {
-            get {
-                return this.productField;
-            }
-            set {
-                this.productField = value;
             }
         }
     }
@@ -6045,80 +6332,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.cardBrandField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class cardOut {
-        
-        private string numberField;
-        
-        private string typeField;
-        
-        private string expirationDateField;
-        
-        private string cardholderField;
-        
-        private string tokenField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string number {
-            get {
-                return this.numberField;
-            }
-            set {
-                this.numberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string expirationDate {
-            get {
-                return this.expirationDateField;
-            }
-            set {
-                this.expirationDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string cardholder {
-            get {
-                return this.cardholderField;
-            }
-            set {
-                this.cardholderField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string token {
-            get {
-                return this.tokenField;
-            }
-            set {
-                this.tokenField = value;
             }
         }
     }
@@ -8469,10 +8682,26 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
+        public authentication3DSecure authentication3DSecure {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((authentication3DSecure)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public string linkedTransactionId {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[2]));
+            }
+        }
+        
+        /// <remarks/>
         public transaction transaction {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((transaction)(this.results[1]));
+                return ((transaction)(this.results[3]));
             }
         }
         
@@ -8480,7 +8709,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public authorization authorization {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((authorization)(this.results[2]));
+                return ((authorization)(this.results[4]));
             }
         }
     }
@@ -9447,10 +9676,18 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
+        public privateData[] privateDataList {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((privateData[])(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
         public transaction transaction {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((transaction)(this.results[1]));
+                return ((transaction)(this.results[2]));
             }
         }
     }

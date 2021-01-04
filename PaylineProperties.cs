@@ -4,12 +4,10 @@ namespace SDKPaylineDotNet
     public class PaylineProperties
     {
         public string DirectPaymentAPIUrl = "https://homologation.payline.com/V4/services/DirectPaymentAPI";
-        public string MassPaymentAPIUrl = "https://homologation.payline.com/V4/services/MassPaymentAPI";
-        public string WebPaymentAPIUrl = "https://homologation.payline.com/V4/services/WebPaymentAPI";
+         public string WebPaymentAPIUrl = "https://homologation.payline.com/V4/services/WebPaymentAPI";
         public string ExtendedAPIUrl = "https://homologation.payline.com/V4/services/ExtendedAPI";
 
         public string DirectPaymentAPIUrlProd = "https://services.payline.com/V4/services/DirectPaymentAPI";
-        public string MassPaymentAPIUrlProd = "https://services.payline.com/V4/services/MassPaymentAPI";
         public string WebPaymentAPIUrlProd = "https://services.payline.com/V4/services/WebPaymentAPI";
         public string ExtendedAPIUrlProd = "https://services.payline.com/V4/services/ExtendedAPI";
 
