@@ -1,0 +1,60 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <!-- The identifier that must be unique within the hosting gallery -->
+    <id>Monext.Payline.DotNetSDK</id>
+
+    <!-- The package version number that is used when resolving dependencies -->
+    <version>4.8.1</version>
+
+    <!-- Authors contain text that appears directly on the gallery -->
+    <authors>Monext</authors>
+
+    <!-- 
+            Owners are typically nuget.org identities that allow gallery
+            users to easily find other packages by the same owners.  
+        -->
+    <owners>Monext</owners>
+
+    <!-- Project URL provides a link for the gallery -->
+    <projectUrl>https://docs.payline.com/display/DT/SDK+.NET</projectUrl>
+
+    <!-- License information is displayed on the gallery
+    <license type="expression">Apache-2.0</license>
+    
+    -->
+
+
+
+    <!-- The icon is used in Visual Studio's package manager UI 
+    https://www.payline.com/sites/default/files/favicons/favicon-32x32.png
+    -->
+    <iconUrl>https://www.payline.com/sites/default/files/favicons/apple-touch-icon.png</iconUrl>
+
+    <!-- 
+            If true, this value prompts the user to accept the license when
+            installing the package. 
+        -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <!-- Any details about this particular release -->
+    <releaseNotes>Bug fixes</releaseNotes>
+
+    <!-- 
+            The description can be used in package manager UI. Note that the
+            nuget.org gallery uses information you add in the portal. 
+        -->
+    <description>Payline SDK</description>
+
+    <!-- Copyright information -->
+    <copyright>Copyright ©2020 Monext</copyright>
+
+    <!-- Tags appear in the gallery and can be used for tag searches -->
+    <tags>monext payline sdk api</tags>
+
+  </metadata>
+  <!-- A readme.txt to display when the package is installed -->
+  <files>
+ <!--   <file src="../payline-sdk-readme.txt" />-->
+  </files>
+</package>
