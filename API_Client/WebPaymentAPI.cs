@@ -96,6 +96,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string asynchronousRetryTimeout, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] threeDSInfo threeDSInfo, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantScore, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<bool> skipSmartDisplay, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string token, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string redirectURL, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string stepCode, 
@@ -124,7 +125,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                         miscData,
                         asynchronousRetryTimeout,
                         threeDSInfo,
-                        merchantScore});
+                        merchantScore,
+                        skipSmartDisplay});
             token = ((string)(results[1]));
             redirectURL = ((string)(results[2]));
             stepCode = ((string)(results[3]));
@@ -158,6 +160,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     string asynchronousRetryTimeout, 
                     threeDSInfo threeDSInfo, 
                     string merchantScore, 
+                    System.Nullable<bool> skipSmartDisplay, 
                     System.AsyncCallback callback, 
                     object asyncState) {
             return this.BeginInvoke("doWebPayment", new object[] {
@@ -183,7 +186,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                         miscData,
                         asynchronousRetryTimeout,
                         threeDSInfo,
-                        merchantScore}, callback, asyncState);
+                        merchantScore,
+                        skipSmartDisplay}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -221,8 +225,9 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     string miscData, 
                     string asynchronousRetryTimeout, 
                     threeDSInfo threeDSInfo, 
-                    string merchantScore) {
-            this.doWebPaymentAsync(version, payment, returnURL, cancelURL, order, notificationURL, selectedContractList, secondSelectedContractList, privateDataList, languageCode, customPaymentPageCode, buyer, owner, securityMode, recurring, customPaymentTemplateURL, contractNumberWalletList, merchantName, subMerchant, miscData, asynchronousRetryTimeout, threeDSInfo, merchantScore, null);
+                    string merchantScore, 
+                    System.Nullable<bool> skipSmartDisplay) {
+            this.doWebPaymentAsync(version, payment, returnURL, cancelURL, order, notificationURL, selectedContractList, secondSelectedContractList, privateDataList, languageCode, customPaymentPageCode, buyer, owner, securityMode, recurring, customPaymentTemplateURL, contractNumberWalletList, merchantName, subMerchant, miscData, asynchronousRetryTimeout, threeDSInfo, merchantScore, skipSmartDisplay, null);
         }
         
         /// <remarks/>
@@ -250,6 +255,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     string asynchronousRetryTimeout, 
                     threeDSInfo threeDSInfo, 
                     string merchantScore, 
+                    System.Nullable<bool> skipSmartDisplay, 
                     object userState) {
             if ((this.doWebPaymentOperationCompleted == null)) {
                 this.doWebPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoWebPaymentOperationCompleted);
@@ -277,7 +283,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                         miscData,
                         asynchronousRetryTimeout,
                         threeDSInfo,
-                        merchantScore}, this.doWebPaymentOperationCompleted, userState);
+                        merchantScore,
+                        skipSmartDisplay}, this.doWebPaymentOperationCompleted, userState);
         }
         
         private void OndoWebPaymentOperationCompleted(object arg) {
