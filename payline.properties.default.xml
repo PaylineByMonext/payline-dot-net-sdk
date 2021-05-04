@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <PaylineProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DirectPaymentAPIUrl>https://homologation.payline.com/V4/services/DirectPaymentAPI</DirectPaymentAPIUrl>
-  <MassPaymentAPIUrl>https://homologation.payline.com/V4/services/MassPaymentAPI</MassPaymentAPIUrl>
   <WebPaymentAPIUrl>https://homologation.payline.com/V4/services/WebPaymentAPI</WebPaymentAPIUrl>
   <ExtendedAPIUrl>https://homologation.payline.com/V4/services/ExtendedAPI</ExtendedAPIUrl>
 
   <DirectPaymentAPIUrlProd>https://services.payline.com/V4/services/DirectPaymentAPI</DirectPaymentAPIUrlProd>
-  <MassPaymentAPIUrlProd>https://services.payline.com/V4/services/MassPaymentAPI</MassPaymentAPIUrlProd>
   <WebPaymentAPIUrlProd>https://services.payline.com/V4/services/WebPaymentAPI</WebPaymentAPIUrlProd>
   <ExtendedAPIUrlProd>https://services.payline.com/V4/services/ExtendedAPI</ExtendedAPIUrlProd>
 
