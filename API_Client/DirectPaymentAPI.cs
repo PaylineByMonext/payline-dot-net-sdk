@@ -1561,6 +1561,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string walletCardInd, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string generateVirtualCvx, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantName, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantURL, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantCountryCode, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string returnURL, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, 
@@ -1592,6 +1594,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
@@ -1630,6 +1634,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1652,6 +1658,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
@@ -1695,6 +1703,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1703,7 +1713,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     threeDSInfo threeDSInfo, 
                     string merchantScore, 
                     privateData[] privateDataList) {
-            this.verifyEnrollmentAsync(transient, version, card, payment, orderRef, mdFieldValue, userAgent, walletId, walletCardInd, generateVirtualCvx, merchantName, returnURL, order, buyer, subMerchant, recurring, threeDSInfo, merchantScore, privateDataList, null);
+            this.verifyEnrollmentAsync(transient, version, card, payment, orderRef, mdFieldValue, userAgent, walletId, walletCardInd, generateVirtualCvx, merchantName, merchantURL, merchantCountryCode, returnURL, order, buyer, subMerchant, recurring, threeDSInfo, merchantScore, privateDataList, null);
         }
         
         /// <remarks/>
@@ -1719,6 +1729,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1743,6 +1755,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
