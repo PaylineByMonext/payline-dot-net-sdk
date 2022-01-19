@@ -319,7 +319,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out bankAccountData bankAccountData, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out subMerchant subMerchant, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out buyer buyer, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string linkedTransactionId) {
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string linkedTransactionId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string travelFileNumber) {
             object[] results = this.Invoke("getWebPaymentDetails", new object[] {
                         version,
                         token});
@@ -343,6 +344,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             subMerchant = ((subMerchant)(results[18]));
             buyer = ((buyer)(results[19]));
             linkedTransactionId = ((string)(results[20]));
+            travelFileNumber = ((string)(results[21]));
             return ((result)(results[0]));
         }
         
@@ -375,7 +377,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
                     out bankAccountData bankAccountData, 
                     out subMerchant subMerchant, 
                     out buyer buyer, 
-                    out string linkedTransactionId) {
+                    out string linkedTransactionId, 
+                    out string travelFileNumber) {
             object[] results = this.EndInvoke(asyncResult);
             transaction = ((transaction)(results[1]));
             payment = ((payment)(results[2]));
@@ -397,6 +400,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             subMerchant = ((subMerchant)(results[18]));
             buyer = ((buyer)(results[19]));
             linkedTransactionId = ((string)(results[20]));
+            travelFileNumber = ((string)(results[21]));
             return ((result)(results[0]));
         }
         
@@ -6194,6 +6198,14 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[20]));
+            }
+        }
+        
+        /// <remarks/>
+        public string travelFileNumber {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[21]));
             }
         }
     }
