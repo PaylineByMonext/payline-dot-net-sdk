@@ -208,6 +208,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string asynchronousRetryTimeout, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref string linkedTransactionId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] threeDSInfo threeDSInfo, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref string travelFileNumber, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, 
                     out transaction transaction, 
                     out authorization authorization, 
@@ -230,17 +232,20 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         subMerchant,
                         asynchronousRetryTimeout,
                         linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber,
                         recurring});
             transient = ((string)(results[1]));
             privateDataList = ((privateData[])(results[2]));
             authentication3DSecure = ((authentication3DSecure)(results[3]));
             linkedTransactionId = ((string)(results[4]));
-            transaction = ((transaction)(results[5]));
-            authorization = ((authorization)(results[6]));
-            card1 = ((cardOut)(results[7]));
-            extendedCard = ((extendedCardType)(results[8]));
-            contractNumber = ((string)(results[9]));
-            resultContainer = ((string)(results[10]));
+            travelFileNumber = ((string)(results[5]));
+            transaction = ((transaction)(results[6]));
+            authorization = ((authorization)(results[7]));
+            card1 = ((cardOut)(results[8]));
+            extendedCard = ((extendedCardType)(results[9]));
+            contractNumber = ((string)(results[10]));
+            resultContainer = ((string)(results[11]));
             return ((result)(results[0]));
         }
         
@@ -260,6 +265,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     subMerchant subMerchant, 
                     string asynchronousRetryTimeout, 
                     string linkedTransactionId, 
+                    threeDSInfo threeDSInfo, 
+                    string travelFileNumber, 
                     recurring recurring, 
                     System.AsyncCallback callback, 
                     object asyncState) {
@@ -278,28 +285,26 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         subMerchant,
                         asynchronousRetryTimeout,
                         linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber,
                         recurring}, callback, asyncState);
         }
         
         /// <remarks/>
-        public result EnddoAuthorization(System.IAsyncResult asyncResult, out string transient, out privateData[] privateDataList, out authentication3DSecure authentication3DSecure, out string linkedTransactionId, out transaction transaction, out authorization authorization, out cardOut card1, out extendedCardType extendedCard, out string contractNumber, out string resultContainer) {
+        public result EnddoAuthorization(System.IAsyncResult asyncResult, out string transient, out privateData[] privateDataList, out authentication3DSecure authentication3DSecure, out string linkedTransactionId, out string travelFileNumber, out transaction transaction, out authorization authorization, out cardOut card1, out extendedCardType extendedCard, out string contractNumber, out string resultContainer) {
             object[] results = this.EndInvoke(asyncResult);
             transient = ((string)(results[1]));
             privateDataList = ((privateData[])(results[2]));
             authentication3DSecure = ((authentication3DSecure)(results[3]));
             linkedTransactionId = ((string)(results[4]));
-            transaction = ((transaction)(results[5]));
-            authorization = ((authorization)(results[6]));
-            card1 = ((cardOut)(results[7]));
-            extendedCard = ((extendedCardType)(results[8]));
-            contractNumber = ((string)(results[9]));
-            resultContainer = ((string)(results[10]));
+            travelFileNumber = ((string)(results[5]));
+            transaction = ((transaction)(results[6]));
+            authorization = ((authorization)(results[7]));
+            card1 = ((cardOut)(results[8]));
+            extendedCard = ((extendedCardType)(results[9]));
+            contractNumber = ((string)(results[10]));
+            resultContainer = ((string)(results[11]));
             return ((result)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void doAuthorizationAsync(string transient, string version, payment payment, bankAccountData bankAccountData, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, string media, subMerchant subMerchant, string asynchronousRetryTimeout, string linkedTransactionId, recurring recurring) {
-            this.doAuthorizationAsync(transient, version, payment, bankAccountData, card, order, buyer, owner, privateDataList, authentication3DSecure, media, subMerchant, asynchronousRetryTimeout, linkedTransactionId, recurring, null);
         }
         
         /// <remarks/>
@@ -318,6 +323,30 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     subMerchant subMerchant, 
                     string asynchronousRetryTimeout, 
                     string linkedTransactionId, 
+                    threeDSInfo threeDSInfo, 
+                    string travelFileNumber, 
+                    recurring recurring) {
+            this.doAuthorizationAsync(transient, version, payment, bankAccountData, card, order, buyer, owner, privateDataList, authentication3DSecure, media, subMerchant, asynchronousRetryTimeout, linkedTransactionId, threeDSInfo, travelFileNumber, recurring, null);
+        }
+        
+        /// <remarks/>
+        public void doAuthorizationAsync(
+                    string transient, 
+                    string version, 
+                    payment payment, 
+                    bankAccountData bankAccountData, 
+                    card card, 
+                    order order, 
+                    buyer buyer, 
+                    owner owner, 
+                    privateData[] privateDataList, 
+                    authentication3DSecure authentication3DSecure, 
+                    string media, 
+                    subMerchant subMerchant, 
+                    string asynchronousRetryTimeout, 
+                    string linkedTransactionId, 
+                    threeDSInfo threeDSInfo, 
+                    string travelFileNumber, 
                     recurring recurring, 
                     object userState) {
             if ((this.doAuthorizationOperationCompleted == null)) {
@@ -338,6 +367,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         subMerchant,
                         asynchronousRetryTimeout,
                         linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber,
                         recurring}, this.doAuthorizationOperationCompleted, userState);
         }
         
@@ -1140,7 +1171,24 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doImmediateWalletPayment", RequestElementName="doImmediateWalletPaymentRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doImmediateWalletPayment(string version, payment payment, order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cvx, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref authentication3DSecure authentication3DSecure, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref string linkedTransactionId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out transaction transaction, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authorization authorization) {
+        public result doImmediateWalletPayment(
+                    string version, 
+                    payment payment, 
+                    order order, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, 
+                    string walletId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cvx, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, 
+                    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref authentication3DSecure authentication3DSecure, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref string linkedTransactionId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] threeDSInfo threeDSInfo, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string travelFileNumber, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out transaction transaction, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authorization authorization) {
             object[] results = this.Invoke("doImmediateWalletPayment", new object[] {
                         version,
                         payment,
@@ -1154,7 +1202,9 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         media,
                         authentication3DSecure,
                         subMerchant,
-                        linkedTransactionId});
+                        linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber});
             authentication3DSecure = ((authentication3DSecure)(results[1]));
             linkedTransactionId = ((string)(results[2]));
             transaction = ((transaction)(results[3]));
@@ -1163,7 +1213,24 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoImmediateWalletPayment(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoImmediateWalletPayment(
+                    string version, 
+                    payment payment, 
+                    order order, 
+                    buyer buyer, 
+                    string walletId, 
+                    string cardInd, 
+                    string cvx, 
+                    recurring recurring, 
+                    privateData[] privateDataList, 
+                    string media, 
+                    authentication3DSecure authentication3DSecure, 
+                    subMerchant subMerchant, 
+                    string linkedTransactionId, 
+                    threeDSInfo threeDSInfo, 
+                    string travelFileNumber, 
+                    System.AsyncCallback callback, 
+                    object asyncState) {
             return this.BeginInvoke("doImmediateWalletPayment", new object[] {
                         version,
                         payment,
@@ -1177,7 +1244,9 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         media,
                         authentication3DSecure,
                         subMerchant,
-                        linkedTransactionId}, callback, asyncState);
+                        linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -1191,12 +1260,28 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId) {
-            this.doImmediateWalletPaymentAsync(version, payment, order, buyer, walletId, cardInd, cvx, recurring, privateDataList, media, authentication3DSecure, subMerchant, linkedTransactionId, null);
+        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId, threeDSInfo threeDSInfo, string travelFileNumber) {
+            this.doImmediateWalletPaymentAsync(version, payment, order, buyer, walletId, cardInd, cvx, recurring, privateDataList, media, authentication3DSecure, subMerchant, linkedTransactionId, threeDSInfo, travelFileNumber, null);
         }
         
         /// <remarks/>
-        public void doImmediateWalletPaymentAsync(string version, payment payment, order order, buyer buyer, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, string media, authentication3DSecure authentication3DSecure, subMerchant subMerchant, string linkedTransactionId, object userState) {
+        public void doImmediateWalletPaymentAsync(
+                    string version, 
+                    payment payment, 
+                    order order, 
+                    buyer buyer, 
+                    string walletId, 
+                    string cardInd, 
+                    string cvx, 
+                    recurring recurring, 
+                    privateData[] privateDataList, 
+                    string media, 
+                    authentication3DSecure authentication3DSecure, 
+                    subMerchant subMerchant, 
+                    string linkedTransactionId, 
+                    threeDSInfo threeDSInfo, 
+                    string travelFileNumber, 
+                    object userState) {
             if ((this.doImmediateWalletPaymentOperationCompleted == null)) {
                 this.doImmediateWalletPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoImmediateWalletPaymentOperationCompleted);
             }
@@ -1213,7 +1298,9 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         media,
                         authentication3DSecure,
                         subMerchant,
-                        linkedTransactionId}, this.doImmediateWalletPaymentOperationCompleted, userState);
+                        linkedTransactionId,
+                        threeDSInfo,
+                        travelFileNumber}, this.doImmediateWalletPaymentOperationCompleted, userState);
         }
         
         private void OndoImmediateWalletPaymentOperationCompleted(object arg) {
@@ -2980,358 +3067,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.numberField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class sdk {
-        
-        private string deviceRenderingOptionsIFField;
-        
-        private string deviceRenderOptionsUIField;
-        
-        private string appIDField;
-        
-        private string ephemPubKeyField;
-        
-        private string maxTimeoutField;
-        
-        private string referenceNumberField;
-        
-        private string transIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string deviceRenderingOptionsIF {
-            get {
-                return this.deviceRenderingOptionsIFField;
-            }
-            set {
-                this.deviceRenderingOptionsIFField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string deviceRenderOptionsUI {
-            get {
-                return this.deviceRenderOptionsUIField;
-            }
-            set {
-                this.deviceRenderOptionsUIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string appID {
-            get {
-                return this.appIDField;
-            }
-            set {
-                this.appIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string ephemPubKey {
-            get {
-                return this.ephemPubKeyField;
-            }
-            set {
-                this.ephemPubKeyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string maxTimeout {
-            get {
-                return this.maxTimeoutField;
-            }
-            set {
-                this.maxTimeoutField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string referenceNumber {
-            get {
-                return this.referenceNumberField;
-            }
-            set {
-                this.referenceNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string transID {
-            get {
-                return this.transIDField;
-            }
-            set {
-                this.transIDField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class browser {
-        
-        private string acceptHeaderField;
-        
-        private string javaEnabledField;
-        
-        private string javascriptEnabledField;
-        
-        private string languageField;
-        
-        private string colorDepthField;
-        
-        private string screenHeightField;
-        
-        private string screenWidthField;
-        
-        private string timeZoneOffsetField;
-        
-        private string userAgentField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string acceptHeader {
-            get {
-                return this.acceptHeaderField;
-            }
-            set {
-                this.acceptHeaderField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string javaEnabled {
-            get {
-                return this.javaEnabledField;
-            }
-            set {
-                this.javaEnabledField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string javascriptEnabled {
-            get {
-                return this.javascriptEnabledField;
-            }
-            set {
-                this.javascriptEnabledField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string language {
-            get {
-                return this.languageField;
-            }
-            set {
-                this.languageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string colorDepth {
-            get {
-                return this.colorDepthField;
-            }
-            set {
-                this.colorDepthField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string screenHeight {
-            get {
-                return this.screenHeightField;
-            }
-            set {
-                this.screenHeightField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string screenWidth {
-            get {
-                return this.screenWidthField;
-            }
-            set {
-                this.screenWidthField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string timeZoneOffset {
-            get {
-                return this.timeZoneOffsetField;
-            }
-            set {
-                this.timeZoneOffsetField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string userAgent {
-            get {
-                return this.userAgentField;
-            }
-            set {
-                this.userAgentField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class threeDSInfo {
-        
-        private string challengeIndField;
-        
-        private string threeDSReqPriorAuthDataField;
-        
-        private string threeDSReqPriorAuthMethodField;
-        
-        private string threeDSReqPriorAuthTimestampField;
-        
-        private browser browserField;
-        
-        private sdk sdkField;
-        
-        private string threeDSMethodNotificationURLField;
-        
-        private string threeDSMethodResultField;
-        
-        private string challengeWindowSizeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string challengeInd {
-            get {
-                return this.challengeIndField;
-            }
-            set {
-                this.challengeIndField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string threeDSReqPriorAuthData {
-            get {
-                return this.threeDSReqPriorAuthDataField;
-            }
-            set {
-                this.threeDSReqPriorAuthDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string threeDSReqPriorAuthMethod {
-            get {
-                return this.threeDSReqPriorAuthMethodField;
-            }
-            set {
-                this.threeDSReqPriorAuthMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string threeDSReqPriorAuthTimestamp {
-            get {
-                return this.threeDSReqPriorAuthTimestampField;
-            }
-            set {
-                this.threeDSReqPriorAuthTimestampField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public browser browser {
-            get {
-                return this.browserField;
-            }
-            set {
-                this.browserField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public sdk sdk {
-            get {
-                return this.sdkField;
-            }
-            set {
-                this.sdkField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string threeDSMethodNotificationURL {
-            get {
-                return this.threeDSMethodNotificationURLField;
-            }
-            set {
-                this.threeDSMethodNotificationURLField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string threeDSMethodResult {
-            get {
-                return this.threeDSMethodResultField;
-            }
-            set {
-                this.threeDSMethodResultField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string challengeWindowSize {
-            get {
-                return this.challengeWindowSizeField;
-            }
-            set {
-                this.challengeWindowSizeField = value;
             }
         }
     }
@@ -6342,6 +6077,358 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class sdk {
+        
+        private string deviceRenderingOptionsIFField;
+        
+        private string deviceRenderOptionsUIField;
+        
+        private string appIDField;
+        
+        private string ephemPubKeyField;
+        
+        private string maxTimeoutField;
+        
+        private string referenceNumberField;
+        
+        private string transIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string deviceRenderingOptionsIF {
+            get {
+                return this.deviceRenderingOptionsIFField;
+            }
+            set {
+                this.deviceRenderingOptionsIFField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string deviceRenderOptionsUI {
+            get {
+                return this.deviceRenderOptionsUIField;
+            }
+            set {
+                this.deviceRenderOptionsUIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string appID {
+            get {
+                return this.appIDField;
+            }
+            set {
+                this.appIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ephemPubKey {
+            get {
+                return this.ephemPubKeyField;
+            }
+            set {
+                this.ephemPubKeyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        public string maxTimeout {
+            get {
+                return this.maxTimeoutField;
+            }
+            set {
+                this.maxTimeoutField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string referenceNumber {
+            get {
+                return this.referenceNumberField;
+            }
+            set {
+                this.referenceNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string transID {
+            get {
+                return this.transIDField;
+            }
+            set {
+                this.transIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class browser {
+        
+        private string acceptHeaderField;
+        
+        private string javaEnabledField;
+        
+        private string javascriptEnabledField;
+        
+        private string languageField;
+        
+        private string colorDepthField;
+        
+        private string screenHeightField;
+        
+        private string screenWidthField;
+        
+        private string timeZoneOffsetField;
+        
+        private string userAgentField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string acceptHeader {
+            get {
+                return this.acceptHeaderField;
+            }
+            set {
+                this.acceptHeaderField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string javaEnabled {
+            get {
+                return this.javaEnabledField;
+            }
+            set {
+                this.javaEnabledField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string javascriptEnabled {
+            get {
+                return this.javascriptEnabledField;
+            }
+            set {
+                this.javascriptEnabledField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string language {
+            get {
+                return this.languageField;
+            }
+            set {
+                this.languageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string colorDepth {
+            get {
+                return this.colorDepthField;
+            }
+            set {
+                this.colorDepthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string screenHeight {
+            get {
+                return this.screenHeightField;
+            }
+            set {
+                this.screenHeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string screenWidth {
+            get {
+                return this.screenWidthField;
+            }
+            set {
+                this.screenWidthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string timeZoneOffset {
+            get {
+                return this.timeZoneOffsetField;
+            }
+            set {
+                this.timeZoneOffsetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string userAgent {
+            get {
+                return this.userAgentField;
+            }
+            set {
+                this.userAgentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class threeDSInfo {
+        
+        private string challengeIndField;
+        
+        private string threeDSReqPriorAuthDataField;
+        
+        private string threeDSReqPriorAuthMethodField;
+        
+        private string threeDSReqPriorAuthTimestampField;
+        
+        private browser browserField;
+        
+        private sdk sdkField;
+        
+        private string threeDSMethodNotificationURLField;
+        
+        private string threeDSMethodResultField;
+        
+        private string challengeWindowSizeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string challengeInd {
+            get {
+                return this.challengeIndField;
+            }
+            set {
+                this.challengeIndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string threeDSReqPriorAuthData {
+            get {
+                return this.threeDSReqPriorAuthDataField;
+            }
+            set {
+                this.threeDSReqPriorAuthDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string threeDSReqPriorAuthMethod {
+            get {
+                return this.threeDSReqPriorAuthMethodField;
+            }
+            set {
+                this.threeDSReqPriorAuthMethodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string threeDSReqPriorAuthTimestamp {
+            get {
+                return this.threeDSReqPriorAuthTimestampField;
+            }
+            set {
+                this.threeDSReqPriorAuthTimestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public browser browser {
+            get {
+                return this.browserField;
+            }
+            set {
+                this.browserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public sdk sdk {
+            get {
+                return this.sdkField;
+            }
+            set {
+                this.sdkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string threeDSMethodNotificationURL {
+            get {
+                return this.threeDSMethodNotificationURLField;
+            }
+            set {
+                this.threeDSMethodNotificationURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string threeDSMethodResult {
+            get {
+                return this.threeDSMethodResultField;
+            }
+            set {
+                this.threeDSMethodResultField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string challengeWindowSize {
+            get {
+                return this.challengeWindowSizeField;
+            }
+            set {
+                this.challengeWindowSizeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
     public partial class subMerchant {
         
         private string subMerchantIdField;
@@ -7862,10 +7949,18 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
+        public string travelFileNumber {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[5]));
+            }
+        }
+        
+        /// <remarks/>
         public transaction transaction {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((transaction)(this.results[5]));
+                return ((transaction)(this.results[6]));
             }
         }
         
@@ -7873,7 +7968,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public authorization authorization {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((authorization)(this.results[6]));
+                return ((authorization)(this.results[7]));
             }
         }
         
@@ -7881,7 +7976,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public cardOut card1 {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((cardOut)(this.results[7]));
+                return ((cardOut)(this.results[8]));
             }
         }
         
@@ -7889,7 +7984,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public extendedCardType extendedCard {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((extendedCardType)(this.results[8]));
+                return ((extendedCardType)(this.results[9]));
             }
         }
         
@@ -7897,7 +7992,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public string contractNumber {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[9]));
+                return ((string)(this.results[10]));
             }
         }
         
@@ -7905,7 +8000,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public string resultContainer {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[10]));
+                return ((string)(this.results[11]));
             }
         }
     }

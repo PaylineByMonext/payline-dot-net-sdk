@@ -79,7 +79,8 @@ namespace SDKPaylineDotNet.ExtendedAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authentication3DSecure authentication3DSecure, 
                     out pointOfSell pointOfSell, 
                     out routingRule routingRule, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string linkedTransactionId) {
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string linkedTransactionId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string travelFileNumber) {
             object[] results = this.Invoke("getTransactionDetails", new object[] {
                         version,
                         transactionId,
@@ -108,6 +109,7 @@ namespace SDKPaylineDotNet.ExtendedAPI {
             pointOfSell = ((pointOfSell)(results[18]));
             routingRule = ((routingRule)(results[19]));
             linkedTransactionId = ((string)(results[20]));
+            travelFileNumber = ((string)(results[21]));
             return ((result)(results[0]));
         }
         
@@ -145,7 +147,8 @@ namespace SDKPaylineDotNet.ExtendedAPI {
                     out authentication3DSecure authentication3DSecure, 
                     out pointOfSell pointOfSell, 
                     out routingRule routingRule, 
-                    out string linkedTransactionId) {
+                    out string linkedTransactionId, 
+                    out string travelFileNumber) {
             object[] results = this.EndInvoke(asyncResult);
             transaction = ((transaction)(results[1]));
             payment = ((payment)(results[2]));
@@ -167,6 +170,7 @@ namespace SDKPaylineDotNet.ExtendedAPI {
             pointOfSell = ((pointOfSell)(results[18]));
             routingRule = ((routingRule)(results[19]));
             linkedTransactionId = ((string)(results[20]));
+            travelFileNumber = ((string)(results[21]));
             return ((result)(results[0]));
         }
         
@@ -5118,6 +5122,14 @@ namespace SDKPaylineDotNet.ExtendedAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[20]));
+            }
+        }
+        
+        /// <remarks/>
+        public string travelFileNumber {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[21]));
             }
         }
     }
