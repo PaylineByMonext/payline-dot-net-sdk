@@ -70,8 +70,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private System.Threading.SendOrPostCallback verifyAuthenticationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback createMerchantOperationCompleted;
-        
         private System.Threading.SendOrPostCallback doScoringChequeOperationCompleted;
         
         private System.Threading.SendOrPostCallback getEncryptionKeyOperationCompleted;
@@ -160,9 +158,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public event verifyAuthenticationCompletedEventHandler verifyAuthenticationCompleted;
         
         /// <remarks/>
-        public event createMerchantCompletedEventHandler createMerchantCompleted;
-        
-        /// <remarks/>
         public event doScoringChequeCompletedEventHandler doScoringChequeCompleted;
         
         /// <remarks/>
@@ -208,7 +203,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, 
                     [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] ref privateData[] privateDataList, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] ref authentication3DSecure authentication3DSecure, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string asynchronousRetryTimeout, 
@@ -238,13 +233,14 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         recurring});
             transient = ((string)(results[1]));
             privateDataList = ((privateData[])(results[2]));
-            linkedTransactionId = ((string)(results[3]));
-            transaction = ((transaction)(results[4]));
-            authorization = ((authorization)(results[5]));
-            card1 = ((cardOut)(results[6]));
-            extendedCard = ((extendedCardType)(results[7]));
-            contractNumber = ((string)(results[8]));
-            resultContainer = ((string)(results[9]));
+            authentication3DSecure = ((authentication3DSecure)(results[3]));
+            linkedTransactionId = ((string)(results[4]));
+            transaction = ((transaction)(results[5]));
+            authorization = ((authorization)(results[6]));
+            card1 = ((cardOut)(results[7]));
+            extendedCard = ((extendedCardType)(results[8]));
+            contractNumber = ((string)(results[9]));
+            resultContainer = ((string)(results[10]));
             return ((result)(results[0]));
         }
         
@@ -286,17 +282,18 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public result EnddoAuthorization(System.IAsyncResult asyncResult, out string transient, out privateData[] privateDataList, out string linkedTransactionId, out transaction transaction, out authorization authorization, out cardOut card1, out extendedCardType extendedCard, out string contractNumber, out string resultContainer) {
+        public result EnddoAuthorization(System.IAsyncResult asyncResult, out string transient, out privateData[] privateDataList, out authentication3DSecure authentication3DSecure, out string linkedTransactionId, out transaction transaction, out authorization authorization, out cardOut card1, out extendedCardType extendedCard, out string contractNumber, out string resultContainer) {
             object[] results = this.EndInvoke(asyncResult);
             transient = ((string)(results[1]));
             privateDataList = ((privateData[])(results[2]));
-            linkedTransactionId = ((string)(results[3]));
-            transaction = ((transaction)(results[4]));
-            authorization = ((authorization)(results[5]));
-            card1 = ((cardOut)(results[6]));
-            extendedCard = ((extendedCardType)(results[7]));
-            contractNumber = ((string)(results[8]));
-            resultContainer = ((string)(results[9]));
+            authentication3DSecure = ((authentication3DSecure)(results[3]));
+            linkedTransactionId = ((string)(results[4]));
+            transaction = ((transaction)(results[5]));
+            authorization = ((authorization)(results[6]));
+            card1 = ((cardOut)(results[7]));
+            extendedCard = ((extendedCardType)(results[8]));
+            contractNumber = ((string)(results[9]));
+            resultContainer = ((string)(results[10]));
             return ((result)(results[0]));
         }
         
@@ -415,7 +412,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doReAuthorization", RequestElementName="doReAuthorizationRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doReAuthorization(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, out transaction transaction, out cardOut card, out extendedCardType extendedCard) {
+        public result doReAuthorization(string version, string transactionID, payment payment, order order, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, out transaction transaction, out cardOut card, out extendedCardType extendedCard) {
             object[] results = this.Invoke("doReAuthorization", new object[] {
                         version,
                         transactionID,
@@ -556,7 +553,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doRefund", RequestElementName="doRefundRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doRefund(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("details", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] orderDetail[] details, out transaction transaction) {
+        public result doRefund(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("details", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] orderDetail[] details, out transaction transaction, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] out miscDataPair[] miscData) {
             object[] results = this.Invoke("doRefund", new object[] {
                         version,
                         transactionID,
@@ -567,6 +564,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         media,
                         details});
             transaction = ((transaction)(results[1]));
+            miscData = ((miscDataPair[])(results[2]));
             return ((result)(results[0]));
         }
         
@@ -584,9 +582,10 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public result EnddoRefund(System.IAsyncResult asyncResult, out transaction transaction) {
+        public result EnddoRefund(System.IAsyncResult asyncResult, out transaction transaction, out miscDataPair[] miscData) {
             object[] results = this.EndInvoke(asyncResult);
             transaction = ((transaction)(results[1]));
+            miscData = ((miscDataPair[])(results[2]));
             return ((result)(results[0]));
         }
         
@@ -1326,7 +1325,23 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doRecurrentWalletPayment", RequestElementName="doRecurrentWalletPaymentRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doRecurrentWalletPayment(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, recurring recurring, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, out string paymentRecordId, [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] out billingRecord[] billingRecordList) {
+        public result doRecurrentWalletPayment(
+                    string version, 
+                    payment payment, 
+                    string orderRef, 
+                    string orderDate, 
+                    string scheduledDate, 
+                    string walletId, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cardInd, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string cvx, 
+                    recurring recurring, 
+                    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string linkedTransactionId, 
+                    out string paymentRecordId, 
+                    [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] out billingRecord[] billingRecordList) {
             object[] results = this.Invoke("doRecurrentWalletPayment", new object[] {
                         version,
                         payment,
@@ -1335,17 +1350,36 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         scheduledDate,
                         walletId,
                         cardInd,
+                        cvx,
                         recurring,
                         privateDataList,
                         order,
-                        media});
+                        media,
+                        authentication3DSecure,
+                        linkedTransactionId});
             paymentRecordId = ((string)(results[1]));
             billingRecordList = ((billingRecord[])(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoRecurrentWalletPayment(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, recurring recurring, privateData[] privateDataList, order order, string media, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoRecurrentWalletPayment(
+                    string version, 
+                    payment payment, 
+                    string orderRef, 
+                    string orderDate, 
+                    string scheduledDate, 
+                    string walletId, 
+                    string cardInd, 
+                    string cvx, 
+                    recurring recurring, 
+                    privateData[] privateDataList, 
+                    order order, 
+                    string media, 
+                    authentication3DSecure authentication3DSecure, 
+                    string linkedTransactionId, 
+                    System.AsyncCallback callback, 
+                    object asyncState) {
             return this.BeginInvoke("doRecurrentWalletPayment", new object[] {
                         version,
                         payment,
@@ -1354,10 +1388,13 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         scheduledDate,
                         walletId,
                         cardInd,
+                        cvx,
                         recurring,
                         privateDataList,
                         order,
-                        media}, callback, asyncState);
+                        media,
+                        authentication3DSecure,
+                        linkedTransactionId}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -1369,12 +1406,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doRecurrentWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, recurring recurring, privateData[] privateDataList, order order, string media) {
-            this.doRecurrentWalletPaymentAsync(version, payment, orderRef, orderDate, scheduledDate, walletId, cardInd, recurring, privateDataList, order, media, null);
+        public void doRecurrentWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, order order, string media, authentication3DSecure authentication3DSecure, string linkedTransactionId) {
+            this.doRecurrentWalletPaymentAsync(version, payment, orderRef, orderDate, scheduledDate, walletId, cardInd, cvx, recurring, privateDataList, order, media, authentication3DSecure, linkedTransactionId, null);
         }
         
         /// <remarks/>
-        public void doRecurrentWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, recurring recurring, privateData[] privateDataList, order order, string media, object userState) {
+        public void doRecurrentWalletPaymentAsync(string version, payment payment, string orderRef, string orderDate, string scheduledDate, string walletId, string cardInd, string cvx, recurring recurring, privateData[] privateDataList, order order, string media, authentication3DSecure authentication3DSecure, string linkedTransactionId, object userState) {
             if ((this.doRecurrentWalletPaymentOperationCompleted == null)) {
                 this.doRecurrentWalletPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoRecurrentWalletPaymentOperationCompleted);
             }
@@ -1386,10 +1423,13 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         scheduledDate,
                         walletId,
                         cardInd,
+                        cvx,
                         recurring,
                         privateDataList,
                         order,
-                        media}, this.doRecurrentWalletPaymentOperationCompleted, userState);
+                        media,
+                        authentication3DSecure,
+                        linkedTransactionId}, this.doRecurrentWalletPaymentOperationCompleted, userState);
         }
         
         private void OndoRecurrentWalletPaymentOperationCompleted(object arg) {
@@ -1521,6 +1561,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string walletCardInd, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string generateVirtualCvx, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantName, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantURL, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantCountryCode, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string returnURL, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, 
@@ -1552,6 +1594,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
@@ -1590,6 +1634,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1612,6 +1658,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
@@ -1655,6 +1703,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1663,7 +1713,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     threeDSInfo threeDSInfo, 
                     string merchantScore, 
                     privateData[] privateDataList) {
-            this.verifyEnrollmentAsync(transient, version, card, payment, orderRef, mdFieldValue, userAgent, walletId, walletCardInd, generateVirtualCvx, merchantName, returnURL, order, buyer, subMerchant, recurring, threeDSInfo, merchantScore, privateDataList, null);
+            this.verifyEnrollmentAsync(transient, version, card, payment, orderRef, mdFieldValue, userAgent, walletId, walletCardInd, generateVirtualCvx, merchantName, merchantURL, merchantCountryCode, returnURL, order, buyer, subMerchant, recurring, threeDSInfo, merchantScore, privateDataList, null);
         }
         
         /// <remarks/>
@@ -1679,6 +1729,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     string walletCardInd, 
                     string generateVirtualCvx, 
                     string merchantName, 
+                    string merchantURL, 
+                    string merchantCountryCode, 
                     string returnURL, 
                     order order, 
                     buyer buyer, 
@@ -1703,6 +1755,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         walletCardInd,
                         generateVirtualCvx,
                         merchantName,
+                        merchantURL,
+                        merchantCountryCode,
                         returnURL,
                         order,
                         buyer,
@@ -1785,80 +1839,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             if ((this.verifyAuthenticationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.verifyAuthenticationCompleted(this, new verifyAuthenticationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("createMerchant", RequestElementName="createMerchantRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result createMerchant([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string corporateName, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string publicName, string currency, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] createMerchantRequestNationalID nationalID, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string distributor, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] addressInterlocutor merchantAddress, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] interlocutor businessInterlocutor, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] interlocutor technicalInterlocutor, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subscription subscription, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("pos")] pointOfSell[] poss, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string partner, out connectionData connectionData) {
-            object[] results = this.Invoke("createMerchant", new object[] {
-                        corporateName,
-                        publicName,
-                        currency,
-                        nationalID,
-                        distributor,
-                        merchantAddress,
-                        businessInterlocutor,
-                        technicalInterlocutor,
-                        subscription,
-                        poss,
-                        partner});
-            connectionData = ((connectionData)(results[1]));
-            return ((result)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegincreateMerchant(string corporateName, string publicName, string currency, createMerchantRequestNationalID nationalID, string distributor, addressInterlocutor merchantAddress, interlocutor businessInterlocutor, interlocutor technicalInterlocutor, subscription subscription, pointOfSell[] poss, string partner, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("createMerchant", new object[] {
-                        corporateName,
-                        publicName,
-                        currency,
-                        nationalID,
-                        distributor,
-                        merchantAddress,
-                        businessInterlocutor,
-                        technicalInterlocutor,
-                        subscription,
-                        poss,
-                        partner}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public result EndcreateMerchant(System.IAsyncResult asyncResult, out connectionData connectionData) {
-            object[] results = this.EndInvoke(asyncResult);
-            connectionData = ((connectionData)(results[1]));
-            return ((result)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void createMerchantAsync(string corporateName, string publicName, string currency, createMerchantRequestNationalID nationalID, string distributor, addressInterlocutor merchantAddress, interlocutor businessInterlocutor, interlocutor technicalInterlocutor, subscription subscription, pointOfSell[] poss, string partner) {
-            this.createMerchantAsync(corporateName, publicName, currency, nationalID, distributor, merchantAddress, businessInterlocutor, technicalInterlocutor, subscription, poss, partner, null);
-        }
-        
-        /// <remarks/>
-        public void createMerchantAsync(string corporateName, string publicName, string currency, createMerchantRequestNationalID nationalID, string distributor, addressInterlocutor merchantAddress, interlocutor businessInterlocutor, interlocutor technicalInterlocutor, subscription subscription, pointOfSell[] poss, string partner, object userState) {
-            if ((this.createMerchantOperationCompleted == null)) {
-                this.createMerchantOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateMerchantOperationCompleted);
-            }
-            this.InvokeAsync("createMerchant", new object[] {
-                        corporateName,
-                        publicName,
-                        currency,
-                        nationalID,
-                        distributor,
-                        merchantAddress,
-                        businessInterlocutor,
-                        technicalInterlocutor,
-                        subscription,
-                        poss,
-                        partner}, this.createMerchantOperationCompleted, userState);
-        }
-        
-        private void OncreateMerchantOperationCompleted(object arg) {
-            if ((this.createMerchantCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createMerchantCompleted(this, new createMerchantCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3000,156 +2980,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.numberField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class connectionData {
-        
-        private string merchantIdField;
-        
-        private string userIdField;
-        
-        private string passwordField;
-        
-        private string secretQuestionField;
-        
-        private string secretAnswerField;
-        
-        /// <remarks/>
-        public string merchantId {
-            get {
-                return this.merchantIdField;
-            }
-            set {
-                this.merchantIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string userId {
-            get {
-                return this.userIdField;
-            }
-            set {
-                this.userIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                this.passwordField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string secretQuestion {
-            get {
-                return this.secretQuestionField;
-            }
-            set {
-                this.secretQuestionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string secretAnswer {
-            get {
-                return this.secretAnswerField;
-            }
-            set {
-                this.secretAnswerField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class option {
-        
-        private string idField;
-        
-        private System.Nullable<bool> subscribedField;
-        
-        private System.Nullable<System.DateTime> endDateField;
-        
-        /// <remarks/>
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> subscribed {
-            get {
-                return this.subscribedField;
-            }
-            set {
-                this.subscribedField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> endDate {
-            get {
-                return this.endDateField;
-            }
-            set {
-                this.endDateField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
-    public partial class subscription {
-        
-        private string idField;
-        
-        private option[] optionField;
-        
-        /// <remarks/>
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("option")]
-        public option[] option {
-            get {
-                return this.optionField;
-            }
-            set {
-                this.optionField = value;
             }
         }
     }
@@ -6342,6 +6172,40 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class miscDataPair {
+        
+        private string keyField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        public string key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
     public partial class recurring {
         
         private string firstAmountField;
@@ -7913,56 +7777,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://impl.ws.payline.experian.com")]
-    public partial class createMerchantRequestNationalID {
-        
-        private string itemField;
-        
-        private ItemChoiceType itemElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SIRET", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("other", typeof(string))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
-        public string Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType ItemElementName {
-            get {
-                return this.itemElementNameField;
-            }
-            set {
-                this.itemElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://impl.ws.payline.experian.com", IncludeInSchema=false)]
-    public enum ItemChoiceType {
-        
-        /// <remarks/>
-        SIRET,
-        
-        /// <remarks/>
-        other,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://impl.ws.payline.experian.com")]
     public partial class getBalanceResponseBalance {
         
         private string amountField;
@@ -8032,10 +7846,18 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
+        public authentication3DSecure authentication3DSecure {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((authentication3DSecure)(this.results[3]));
+            }
+        }
+        
+        /// <remarks/>
         public string linkedTransactionId {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[3]));
+                return ((string)(this.results[4]));
             }
         }
         
@@ -8043,7 +7865,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public transaction transaction {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((transaction)(this.results[4]));
+                return ((transaction)(this.results[5]));
             }
         }
         
@@ -8051,7 +7873,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public authorization authorization {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((authorization)(this.results[5]));
+                return ((authorization)(this.results[6]));
             }
         }
         
@@ -8059,7 +7881,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public cardOut card1 {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((cardOut)(this.results[6]));
+                return ((cardOut)(this.results[7]));
             }
         }
         
@@ -8067,7 +7889,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public extendedCardType extendedCard {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((extendedCardType)(this.results[7]));
+                return ((extendedCardType)(this.results[8]));
             }
         }
         
@@ -8075,7 +7897,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public string contractNumber {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[8]));
+                return ((string)(this.results[9]));
             }
         }
         
@@ -8083,7 +7905,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         public string resultContainer {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[9]));
+                return ((string)(this.results[10]));
             }
         }
     }
@@ -8260,6 +8082,14 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((transaction)(this.results[1]));
+            }
+        }
+        
+        /// <remarks/>
+        public miscDataPair[] miscData {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((miscDataPair[])(this.results[2]));
             }
         }
     }
@@ -9090,40 +8920,6 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[4]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    public delegate void createMerchantCompletedEventHandler(object sender, createMerchantCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class createMerchantCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal createMerchantCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public result Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((result)(this.results[0]));
-            }
-        }
-        
-        /// <remarks/>
-        public connectionData connectionData {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((connectionData)(this.results[1]));
             }
         }
     }

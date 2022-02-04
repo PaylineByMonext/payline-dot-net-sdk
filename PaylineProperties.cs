@@ -1,10 +1,9 @@
-
 namespace SDKPaylineDotNet
 {
     public class PaylineProperties
     {
         public string DirectPaymentAPIUrl = "https://homologation.payline.com/V4/services/DirectPaymentAPI";
-         public string WebPaymentAPIUrl = "https://homologation.payline.com/V4/services/WebPaymentAPI";
+        public string WebPaymentAPIUrl = "https://homologation.payline.com/V4/services/WebPaymentAPI";
         public string ExtendedAPIUrl = "https://homologation.payline.com/V4/services/ExtendedAPI";
 
         public string DirectPaymentAPIUrlProd = "https://services.payline.com/V4/services/DirectPaymentAPI";
@@ -21,6 +20,7 @@ namespace SDKPaylineDotNet
 
         //Default properties
         public string DefaultPaymentCurrency = "978";
+
         public string DefaultOrderCurrency = "978";
         public string DefaultSecurityMode = "SSL";
         public string DefaultLanguage = "english";
@@ -37,12 +37,10 @@ namespace SDKPaylineDotNet
         public string CustomPaymentPageCode = "";
         public string CustomPaymentTemplateUrl = "";
 
-
         public string Web2TokenKey = "";
         public string Web2TokenProdUrl = "";
         public string Web2TokenHomoUrl = "";
         public string Web2TokenContractNumber = "";
-        public string Web2TokenCallbackUrl= "";
-
+        public string Web2TokenCallbackUrl = "";
     }
 }

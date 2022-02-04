@@ -5,7 +5,7 @@
     <id>Monext.Payline.DotNetSDK</id>
 
     <!-- The package version number that is used when resolving dependencies -->
-    <version>4.8.1</version>
+    <version>4.8.3</version>
 
     <!-- Authors contain text that appears directly on the gallery -->
     <authors>Monext</authors>
@@ -47,7 +47,7 @@
     <description>Payline SDK</description>
 
     <!-- Copyright information -->
-    <copyright>Copyright ©2020 Monext</copyright>
+    <copyright>Copyright ©2021 Monext</copyright>
 
     <!-- Tags appear in the gallery and can be used for tag searches -->
     <tags>monext payline sdk api</tags>
