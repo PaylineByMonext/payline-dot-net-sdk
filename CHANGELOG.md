@@ -1,6 +1,7 @@
 ﻿## Changelog Payline .NET SDK
 ---------------------------------------- 
 * 4.8.5 (2022-02-25)
+  * Update WSDL from 4.69 to 4.70
   * Update Framework min version to 4.6.2
 
 ---------------------------------------- 
