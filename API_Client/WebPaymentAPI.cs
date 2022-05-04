@@ -4275,6 +4275,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         private string transIDField;
         
+        private string encDataField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string deviceRenderingOptionsIF {
@@ -4349,6 +4351,17 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             }
             set {
                 this.transIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string encData {
+            get {
+                return this.encDataField;
+            }
+            set {
+                this.encDataField = value;
             }
         }
     }
