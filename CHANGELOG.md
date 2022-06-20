@@ -1,27 +1,37 @@
-﻿## Changelog Payline .NET SDK
+﻿---------------------------------------- 
+
+* 4.8.5 (2022-02-25)
+  * Update WSDL from 4.69 to 4.70
+  * changer parameter type for sdk/maxTimeout
+
 ---------------------------------------- 
+
 * 4.8.5 (2022-02-25)
   * Update WSDL from 4.69 to 4.70
   * Update Framework min version to 4.6.2
-  * Update WSDL from 4.69 to 4.70
 
 ---------------------------------------- 
+
 * 4.8.4 (2022-01-19)
   * Update WSDL from 4.68 to 4.69
 
 ---------------------------------------- 
+
 * 4.8.3 (2021-09-27)
   * Update WSDL from 4.66 to 4.68
 
 ---------------------------------------- 
+
 * 4.8.2 (2021-04-30)
     * Update WSDL from 4.64.1 to 4.66
    
 ---------------------------------------- 
+
 * 4.8.1 (2020-12-10)
     * Update WSDL from 4.60 to 4.64.1
 
 ---------------------------------------- 
+
 * 4.8 (2020-11-09)
     * Runtime support from 2.0 to 4.0
     * SecurityProtocol upgrade to TLS 1.2

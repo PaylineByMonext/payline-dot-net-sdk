@@ -4322,7 +4322,7 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string maxTimeout {
             get {
                 return this.maxTimeoutField;
