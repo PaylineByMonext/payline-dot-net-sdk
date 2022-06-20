@@ -8,7 +8,7 @@ Le SDK  .NET est composé d'une librairie de fonctions qui permet d'utiliser les
 
 Une fois le SDK référence dans votre projet, vous devez renommer le fichier payline.properties.default.xml en payline.properties.xml et associer des valeurs aux paramètres de configuration.
 
-Utiliser le .Net Framework 4.6.1 au minimum
+Utiliser le .Net Framework 4.6.2 au minimum
 
 
 
