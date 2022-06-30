@@ -1,7 +1,7 @@
 ﻿---------------------------------------- 
 
 * 4.8.6 (2022-06-20)
-  * Update WSDL from 4.69 to 4.70
+  * Update WSDL from 4.70 to 4.71
   * changer parameter type for sdk/maxTimeout
 
 ---------------------------------------- 
