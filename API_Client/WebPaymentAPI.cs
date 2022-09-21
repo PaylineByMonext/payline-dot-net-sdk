@@ -5129,6 +5129,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         private string legalStatusField;
         
+        private string legalDocumentTypeField;
+        
         private string legalDocumentField;
         
         private string birthDateField;
@@ -5341,6 +5343,17 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             }
             set {
                 this.legalStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string legalDocumentType {
+            get {
+                return this.legalDocumentTypeField;
+            }
+            set {
+                this.legalDocumentTypeField = value;
             }
         }
         
