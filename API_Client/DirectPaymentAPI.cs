@@ -382,28 +382,30 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doCapture", RequestElementName="doCaptureRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doCapture(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string reAuthorization) {
+        public result doCapture(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string miscData, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string reAuthorization) {
             object[] results = this.Invoke("doCapture", new object[] {
                         version,
                         transactionID,
                         payment,
                         privateDataList,
                         sequenceNumber,
-                        media});
+                        media,
+                        miscData});
             transaction = ((transaction)(results[1]));
             reAuthorization = ((string)(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoCapture(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoCapture(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media, string miscData, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doCapture", new object[] {
                         version,
                         transactionID,
                         payment,
                         privateDataList,
                         sequenceNumber,
-                        media}, callback, asyncState);
+                        media,
+                        miscData}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -415,12 +417,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doCaptureAsync(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media) {
-            this.doCaptureAsync(version, transactionID, payment, privateDataList, sequenceNumber, media, null);
+        public void doCaptureAsync(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media, string miscData) {
+            this.doCaptureAsync(version, transactionID, payment, privateDataList, sequenceNumber, media, miscData, null);
         }
         
         /// <remarks/>
-        public void doCaptureAsync(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media, object userState) {
+        public void doCaptureAsync(string version, string transactionID, payment payment, privateData[] privateDataList, string sequenceNumber, string media, string miscData, object userState) {
             if ((this.doCaptureOperationCompleted == null)) {
                 this.doCaptureOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoCaptureOperationCompleted);
             }
@@ -430,7 +432,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         payment,
                         privateDataList,
                         sequenceNumber,
-                        media}, this.doCaptureOperationCompleted, userState);
+                        media,
+                        miscData}, this.doCaptureOperationCompleted, userState);
         }
         
         private void OndoCaptureOperationCompleted(object arg) {
@@ -584,7 +587,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doRefund", RequestElementName="doRefundRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doRefund(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("details", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] orderDetail[] details, out transaction transaction, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] out miscDataPair[] miscData) {
+        public result doRefund(string version, string transactionID, payment payment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string sequenceNumber, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute("details", Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] orderDetail[] details, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string miscData, out transaction transaction, [System.Xml.Serialization.XmlArrayAttribute("miscData", IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] out miscDataPair[] miscData1) {
             object[] results = this.Invoke("doRefund", new object[] {
                         version,
                         transactionID,
@@ -593,14 +596,15 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         sequenceNumber,
                         media,
-                        details});
+                        details,
+                        miscData});
             transaction = ((transaction)(results[1]));
-            miscData = ((miscDataPair[])(results[2]));
+            miscData1 = ((miscDataPair[])(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoRefund(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoRefund(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details, string miscData, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doRefund", new object[] {
                         version,
                         transactionID,
@@ -609,24 +613,25 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         sequenceNumber,
                         media,
-                        details}, callback, asyncState);
+                        details,
+                        miscData}, callback, asyncState);
         }
         
         /// <remarks/>
-        public result EnddoRefund(System.IAsyncResult asyncResult, out transaction transaction, out miscDataPair[] miscData) {
+        public result EnddoRefund(System.IAsyncResult asyncResult, out transaction transaction, out miscDataPair[] miscData1) {
             object[] results = this.EndInvoke(asyncResult);
             transaction = ((transaction)(results[1]));
-            miscData = ((miscDataPair[])(results[2]));
+            miscData1 = ((miscDataPair[])(results[2]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public void doRefundAsync(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details) {
-            this.doRefundAsync(version, transactionID, payment, comment, privateDataList, sequenceNumber, media, details, null);
+        public void doRefundAsync(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details, string miscData) {
+            this.doRefundAsync(version, transactionID, payment, comment, privateDataList, sequenceNumber, media, details, miscData, null);
         }
         
         /// <remarks/>
-        public void doRefundAsync(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details, object userState) {
+        public void doRefundAsync(string version, string transactionID, payment payment, string comment, privateData[] privateDataList, string sequenceNumber, string media, orderDetail[] details, string miscData, object userState) {
             if ((this.doRefundOperationCompleted == null)) {
                 this.doRefundOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoRefundOperationCompleted);
             }
@@ -638,7 +643,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         privateDataList,
                         sequenceNumber,
                         media,
-                        details}, this.doRefundOperationCompleted, userState);
+                        details,
+                        miscData}, this.doRefundOperationCompleted, userState);
         }
         
         private void OndoRefundOperationCompleted(object arg) {
@@ -7009,6 +7015,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private string legalStatusField;
         
+        private string legalDocumentTypeField;
+        
         private string legalDocumentField;
         
         private string birthDateField;
@@ -7221,6 +7229,17 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.legalStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string legalDocumentType {
+            get {
+                return this.legalDocumentTypeField;
+            }
+            set {
+                this.legalDocumentTypeField = value;
             }
         }
         
@@ -8194,7 +8213,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public miscDataPair[] miscData {
+        public miscDataPair[] miscData1 {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((miscDataPair[])(this.results[2]));

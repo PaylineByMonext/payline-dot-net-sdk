@@ -1,5 +1,13 @@
 ﻿---------------------------------------- 
 
+* 4.8.7 (2022-09-21)
+  * Update WSDL from 4.71 to 4.72
+  * add miscData in doCapture
+  * add miscData in doRefund
+  * add legalDocumentType on buyer object
+
+---------------------------------------- 
+
 * 4.8.6 (2022-06-20)
   * Update WSDL from 4.70 to 4.71
   * changer parameter type for sdk/maxTimeout
