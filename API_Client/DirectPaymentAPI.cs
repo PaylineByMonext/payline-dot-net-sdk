@@ -1674,7 +1674,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string mpiResult, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out authentication3DSecure authentication3DSecure, 
                     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string virtualCvx, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string token) {
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out string token, 
+                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] out sdkChallenge sdkChallenge) {
             object[] results = this.Invoke("verifyEnrollment", new object[] {
                         transient,
                         version,
@@ -1711,6 +1712,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             authentication3DSecure = ((authentication3DSecure)(results[12]));
             virtualCvx = ((string)(results[13]));
             token = ((string)(results[14]));
+            sdkChallenge = ((sdkChallenge)(results[15]));
             return ((result)(results[0]));
         }
         
@@ -1764,7 +1766,23 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public result EndverifyEnrollment(System.IAsyncResult asyncResult, out string transient, out string mdFieldValue, out privateData[] privateDataList, out string actionUrl, out string actionMethod, out string pareqFieldName, out string pareqFieldValue, out string termUrlName, out string termUrlValue, out string mdFieldName, out string mpiResult, out authentication3DSecure authentication3DSecure, out string virtualCvx, out string token) {
+        public result EndverifyEnrollment(
+                    System.IAsyncResult asyncResult, 
+                    out string transient, 
+                    out string mdFieldValue, 
+                    out privateData[] privateDataList, 
+                    out string actionUrl, 
+                    out string actionMethod, 
+                    out string pareqFieldName, 
+                    out string pareqFieldValue, 
+                    out string termUrlName, 
+                    out string termUrlValue, 
+                    out string mdFieldName, 
+                    out string mpiResult, 
+                    out authentication3DSecure authentication3DSecure, 
+                    out string virtualCvx, 
+                    out string token, 
+                    out sdkChallenge sdkChallenge) {
             object[] results = this.EndInvoke(asyncResult);
             transient = ((string)(results[1]));
             mdFieldValue = ((string)(results[2]));
@@ -1780,6 +1798,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             authentication3DSecure = ((authentication3DSecure)(results[12]));
             virtualCvx = ((string)(results[13]));
             token = ((string)(results[14]));
+            sdkChallenge = ((sdkChallenge)(results[15]));
             return ((result)(results[0]));
         }
         
@@ -1999,17 +2018,19 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("getEncryptionKey", RequestElementName="getEncryptionKeyRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result getEncryptionKey([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string version, out key key) {
+        public result getEncryptionKey([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string version, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantKeyName, out key key) {
             object[] results = this.Invoke("getEncryptionKey", new object[] {
-                        version});
+                        version,
+                        merchantKeyName});
             key = ((key)(results[1]));
             return ((result)(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegingetEncryptionKey(string version, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegingetEncryptionKey(string version, string merchantKeyName, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("getEncryptionKey", new object[] {
-                        version}, callback, asyncState);
+                        version,
+                        merchantKeyName}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -2020,17 +2041,18 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void getEncryptionKeyAsync(string version) {
-            this.getEncryptionKeyAsync(version, null);
+        public void getEncryptionKeyAsync(string version, string merchantKeyName) {
+            this.getEncryptionKeyAsync(version, merchantKeyName, null);
         }
         
         /// <remarks/>
-        public void getEncryptionKeyAsync(string version, object userState) {
+        public void getEncryptionKeyAsync(string version, string merchantKeyName, object userState) {
             if ((this.getEncryptionKeyOperationCompleted == null)) {
                 this.getEncryptionKeyOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEncryptionKeyOperationCompleted);
             }
             this.InvokeAsync("getEncryptionKey", new object[] {
-                        version}, this.getEncryptionKeyOperationCompleted, userState);
+                        version,
+                        merchantKeyName}, this.getEncryptionKeyOperationCompleted, userState);
         }
         
         private void OngetEncryptionKeyOperationCompleted(object arg) {
@@ -2914,6 +2936,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private string modulusField;
         
+        private string merchantKeyNameField;
+        
         private string publicExponentField;
         
         private string expirationDateField;
@@ -2942,6 +2966,16 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.modulusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string merchantKeyName {
+            get {
+                return this.merchantKeyNameField;
+            }
+            set {
+                this.merchantKeyNameField = value;
             }
         }
         
@@ -3073,6 +3107,171 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.numberField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class sdkChallenge {
+        
+        private string cardTypeField;
+        
+        private string threeDSServerTransIDField;
+        
+        private string threeDSVersionField;
+        
+        private string authenticationTypeField;
+        
+        private string transStatusField;
+        
+        private string sdkTransIDField;
+        
+        private string dsTransIDField;
+        
+        private string acsTransIDField;
+        
+        private string acsRenderingTypeField;
+        
+        private string acsReferenceNumberField;
+        
+        private string acsSignedContentField;
+        
+        private string acsOperatorIDField;
+        
+        private string acsChallengeMandatedField;
+        
+        /// <remarks/>
+        public string cardType {
+            get {
+                return this.cardTypeField;
+            }
+            set {
+                this.cardTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string threeDSServerTransID {
+            get {
+                return this.threeDSServerTransIDField;
+            }
+            set {
+                this.threeDSServerTransIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string threeDSVersion {
+            get {
+                return this.threeDSVersionField;
+            }
+            set {
+                this.threeDSVersionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string authenticationType {
+            get {
+                return this.authenticationTypeField;
+            }
+            set {
+                this.authenticationTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string transStatus {
+            get {
+                return this.transStatusField;
+            }
+            set {
+                this.transStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string sdkTransID {
+            get {
+                return this.sdkTransIDField;
+            }
+            set {
+                this.sdkTransIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string dsTransID {
+            get {
+                return this.dsTransIDField;
+            }
+            set {
+                this.dsTransIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsTransID {
+            get {
+                return this.acsTransIDField;
+            }
+            set {
+                this.acsTransIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsRenderingType {
+            get {
+                return this.acsRenderingTypeField;
+            }
+            set {
+                this.acsRenderingTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsReferenceNumber {
+            get {
+                return this.acsReferenceNumberField;
+            }
+            set {
+                this.acsReferenceNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsSignedContent {
+            get {
+                return this.acsSignedContentField;
+            }
+            set {
+                this.acsSignedContentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsOperatorID {
+            get {
+                return this.acsOperatorIDField;
+            }
+            set {
+                this.acsOperatorIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string acsChallengeMandated {
+            get {
+                return this.acsChallengeMandatedField;
+            }
+            set {
+                this.acsChallengeMandatedField = value;
             }
         }
     }
@@ -8989,6 +9188,14 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[14]));
+            }
+        }
+        
+        /// <remarks/>
+        public sdkChallenge sdkChallenge {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((sdkChallenge)(this.results[15]));
             }
         }
     }
