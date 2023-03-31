@@ -1414,6 +1414,16 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         private paymentData paymentDataField;
         
+        private string parField;
+        
+        private string tokenRequestorCryptogramField;
+        
+        private string tokenRequestorIdField;
+        
+        private string last4Field;
+        
+        private string panTypeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string encryptionKeyId {
@@ -1541,6 +1551,61 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             }
             set {
                 this.paymentDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string par {
+            get {
+                return this.parField;
+            }
+            set {
+                this.parField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string tokenRequestorCryptogram {
+            get {
+                return this.tokenRequestorCryptogramField;
+            }
+            set {
+                this.tokenRequestorCryptogramField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string tokenRequestorId {
+            get {
+                return this.tokenRequestorIdField;
+            }
+            set {
+                this.tokenRequestorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string last4 {
+            get {
+                return this.last4Field;
+            }
+            set {
+                this.last4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string panType {
+            get {
+                return this.panTypeField;
+            }
+            set {
+                this.panTypeField = value;
             }
         }
     }

@@ -92,6 +92,8 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private System.Threading.SendOrPostCallback isRegisteredOperationCompleted;
         
+        private System.Threading.SendOrPostCallback prepareSessionOperationCompleted;
+        
         /// <remarks/>
         public DirectPaymentAPI() {
             this.Url = "http://host/V4/services/DirectPaymentAPI";
@@ -189,6 +191,9 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         /// <remarks/>
         public event isRegisteredCompletedEventHandler isRegisteredCompleted;
+        
+        /// <remarks/>
+        public event prepareSessionCompletedEventHandler prepareSessionCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doAuthorization", RequestElementName="doAuthorizationRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2586,6 +2591,59 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             if ((this.isRegisteredCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.isRegisteredCompleted(this, new isRegisteredCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("prepareSession", RequestElementName="prepareSessionRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("result")]
+        public result prepareSession(string version, string contractNumber, string orderRef, string miscData, out string data) {
+            object[] results = this.Invoke("prepareSession", new object[] {
+                        version,
+                        contractNumber,
+                        orderRef,
+                        miscData});
+            data = ((string)(results[1]));
+            return ((result)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginprepareSession(string version, string contractNumber, string orderRef, string miscData, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("prepareSession", new object[] {
+                        version,
+                        contractNumber,
+                        orderRef,
+                        miscData}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public result EndprepareSession(System.IAsyncResult asyncResult, out string data) {
+            object[] results = this.EndInvoke(asyncResult);
+            data = ((string)(results[1]));
+            return ((result)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void prepareSessionAsync(string version, string contractNumber, string orderRef, string miscData) {
+            this.prepareSessionAsync(version, contractNumber, orderRef, miscData, null);
+        }
+        
+        /// <remarks/>
+        public void prepareSessionAsync(string version, string contractNumber, string orderRef, string miscData, object userState) {
+            if ((this.prepareSessionOperationCompleted == null)) {
+                this.prepareSessionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnprepareSessionOperationCompleted);
+            }
+            this.InvokeAsync("prepareSession", new object[] {
+                        version,
+                        contractNumber,
+                        orderRef,
+                        miscData}, this.prepareSessionOperationCompleted, userState);
+        }
+        
+        private void OnprepareSessionOperationCompleted(object arg) {
+            if ((this.prepareSessionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.prepareSessionCompleted(this, new prepareSessionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5793,6 +5851,16 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         
         private paymentData paymentDataField;
         
+        private string parField;
+        
+        private string tokenRequestorCryptogramField;
+        
+        private string tokenRequestorIdField;
+        
+        private string last4Field;
+        
+        private string panTypeField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string encryptionKeyId {
@@ -5920,6 +5988,61 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             }
             set {
                 this.paymentDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string par {
+            get {
+                return this.parField;
+            }
+            set {
+                this.parField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string tokenRequestorCryptogram {
+            get {
+                return this.tokenRequestorCryptogramField;
+            }
+            set {
+                this.tokenRequestorCryptogramField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string tokenRequestorId {
+            get {
+                return this.tokenRequestorIdField;
+            }
+            set {
+                this.tokenRequestorIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string last4 {
+            get {
+                return this.last4Field;
+            }
+            set {
+                this.last4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string panType {
+            get {
+                return this.panTypeField;
+            }
+            set {
+                this.panTypeField = value;
             }
         }
     }
@@ -9860,6 +9983,40 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[2]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    public delegate void prepareSessionCompletedEventHandler(object sender, prepareSessionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class prepareSessionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal prepareSessionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public result Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((result)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public string data {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[1]));
             }
         }
     }
