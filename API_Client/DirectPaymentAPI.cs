@@ -514,7 +514,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doDebit", RequestElementName="doDebitRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doDebit(string version, payment payment, card card, order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, authorization authorization, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute("card")] out cardOut card1, out extendedCardType extendedCard) {
+        public result doDebit(string version, payment payment, card card, order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string miscData, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] authentication3DSecure authentication3DSecure, authorization authorization, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute("card")] out cardOut card1, out extendedCardType extendedCard) {
             object[] results = this.Invoke("doDebit", new object[] {
                         version,
                         payment,
@@ -523,6 +523,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         authentication3DSecure,
                         authorization,
                         media,
@@ -534,7 +535,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoDebit(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoDebit(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doDebit", new object[] {
                         version,
                         payment,
@@ -543,6 +544,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         authentication3DSecure,
                         authorization,
                         media,
@@ -559,12 +561,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doDebitAsync(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant) {
-            this.doDebitAsync(version, payment, card, order, buyer, owner, privateDataList, authentication3DSecure, authorization, media, subMerchant, null);
+        public void doDebitAsync(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant) {
+            this.doDebitAsync(version, payment, card, order, buyer, owner, privateDataList, miscData, authentication3DSecure, authorization, media, subMerchant, null);
         }
         
         /// <remarks/>
-        public void doDebitAsync(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant, object userState) {
+        public void doDebitAsync(string version, payment payment, card card, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, authentication3DSecure authentication3DSecure, authorization authorization, string media, subMerchant subMerchant, object userState) {
             if ((this.doDebitOperationCompleted == null)) {
                 this.doDebitOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoDebitOperationCompleted);
             }
@@ -576,6 +578,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         authentication3DSecure,
                         authorization,
                         media,
@@ -727,7 +730,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doCredit", RequestElementName="doCreditRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doCredit(string version, payment payment, card card, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute("card")] out cardOut card1, out extendedCardType extendedCard) {
+        public result doCredit(string version, payment payment, card card, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string comment, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] order order, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string miscData, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string media, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, out transaction transaction, [System.Xml.Serialization.XmlElementAttribute("card")] out cardOut card1, out extendedCardType extendedCard) {
             object[] results = this.Invoke("doCredit", new object[] {
                         version,
                         payment,
@@ -737,6 +740,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         media,
                         subMerchant});
             transaction = ((transaction)(results[1]));
@@ -746,7 +750,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public System.IAsyncResult BegindoCredit(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string media, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BegindoCredit(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, string media, subMerchant subMerchant, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("doCredit", new object[] {
                         version,
                         payment,
@@ -756,6 +760,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         media,
                         subMerchant}, callback, asyncState);
         }
@@ -770,12 +775,12 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
         }
         
         /// <remarks/>
-        public void doCreditAsync(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string media, subMerchant subMerchant) {
-            this.doCreditAsync(version, payment, card, comment, order, buyer, owner, privateDataList, media, subMerchant, null);
+        public void doCreditAsync(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, string media, subMerchant subMerchant) {
+            this.doCreditAsync(version, payment, card, comment, order, buyer, owner, privateDataList, miscData, media, subMerchant, null);
         }
         
         /// <remarks/>
-        public void doCreditAsync(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string media, subMerchant subMerchant, object userState) {
+        public void doCreditAsync(string version, payment payment, card card, string comment, order order, buyer buyer, owner owner, privateData[] privateDataList, string miscData, string media, subMerchant subMerchant, object userState) {
             if ((this.doCreditOperationCompleted == null)) {
                 this.doCreditOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoCreditOperationCompleted);
             }
@@ -788,6 +793,7 @@ namespace SDKPaylineDotNet.DirectPaymentAPI {
                         buyer,
                         owner,
                         privateDataList,
+                        miscData,
                         media,
                         subMerchant}, this.doCreditOperationCompleted, userState);
         }
