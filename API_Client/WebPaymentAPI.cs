@@ -41,8 +41,6 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         private System.Threading.SendOrPostCallback getWebWalletOperationCompleted;
         
-        private System.Threading.SendOrPostCallback doAuthorizationRedirectOperationCompleted;
-        
         /// <remarks/>
         public WebPaymentAPI() {
             this.Url = "http://host/V4/services/WebPaymentAPI";
@@ -65,9 +63,6 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         /// <remarks/>
         public event getWebWalletCompletedEventHandler getWebWalletCompleted;
-        
-        /// <remarks/>
-        public event doAuthorizationRedirectCompletedEventHandler doAuthorizationRedirectCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doWebPayment", RequestElementName="doWebPaymentRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -954,170 +949,6 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             if ((this.getWebWalletCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getWebWalletCompleted(this, new getWebWalletCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("doAuthorizationRedirect", RequestElementName="doAuthorizationRedirectRequest", RequestNamespace="http://impl.ws.payline.experian.com", ResponseNamespace="http://impl.ws.payline.experian.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("result")]
-        public result doAuthorizationRedirect(
-                    string version, 
-                    payment payment, 
-                    card card, 
-                    string returnURL, 
-                    string cancelURL, 
-                    order order, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string notificationURL, 
-                    [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)] [System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://obj.ws.payline.experian.com", IsNullable=false)] privateData[] privateDataList, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string languageCode, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] buyer buyer, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] owner owner, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string securityMode, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] recurring recurring, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string merchantName, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] subMerchant subMerchant, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string miscData, 
-                    [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string asynchronousRetryTimeout, 
-                    out string redirectURL) {
-            object[] results = this.Invoke("doAuthorizationRedirect", new object[] {
-                        version,
-                        payment,
-                        card,
-                        returnURL,
-                        cancelURL,
-                        order,
-                        notificationURL,
-                        privateDataList,
-                        languageCode,
-                        buyer,
-                        owner,
-                        securityMode,
-                        recurring,
-                        merchantName,
-                        subMerchant,
-                        miscData,
-                        asynchronousRetryTimeout});
-            redirectURL = ((string)(results[1]));
-            return ((result)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BegindoAuthorizationRedirect(
-                    string version, 
-                    payment payment, 
-                    card card, 
-                    string returnURL, 
-                    string cancelURL, 
-                    order order, 
-                    string notificationURL, 
-                    privateData[] privateDataList, 
-                    string languageCode, 
-                    buyer buyer, 
-                    owner owner, 
-                    string securityMode, 
-                    recurring recurring, 
-                    string merchantName, 
-                    subMerchant subMerchant, 
-                    string miscData, 
-                    string asynchronousRetryTimeout, 
-                    System.AsyncCallback callback, 
-                    object asyncState) {
-            return this.BeginInvoke("doAuthorizationRedirect", new object[] {
-                        version,
-                        payment,
-                        card,
-                        returnURL,
-                        cancelURL,
-                        order,
-                        notificationURL,
-                        privateDataList,
-                        languageCode,
-                        buyer,
-                        owner,
-                        securityMode,
-                        recurring,
-                        merchantName,
-                        subMerchant,
-                        miscData,
-                        asynchronousRetryTimeout}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public result EnddoAuthorizationRedirect(System.IAsyncResult asyncResult, out string redirectURL) {
-            object[] results = this.EndInvoke(asyncResult);
-            redirectURL = ((string)(results[1]));
-            return ((result)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void doAuthorizationRedirectAsync(
-                    string version, 
-                    payment payment, 
-                    card card, 
-                    string returnURL, 
-                    string cancelURL, 
-                    order order, 
-                    string notificationURL, 
-                    privateData[] privateDataList, 
-                    string languageCode, 
-                    buyer buyer, 
-                    owner owner, 
-                    string securityMode, 
-                    recurring recurring, 
-                    string merchantName, 
-                    subMerchant subMerchant, 
-                    string miscData, 
-                    string asynchronousRetryTimeout) {
-            this.doAuthorizationRedirectAsync(version, payment, card, returnURL, cancelURL, order, notificationURL, privateDataList, languageCode, buyer, owner, securityMode, recurring, merchantName, subMerchant, miscData, asynchronousRetryTimeout, null);
-        }
-        
-        /// <remarks/>
-        public void doAuthorizationRedirectAsync(
-                    string version, 
-                    payment payment, 
-                    card card, 
-                    string returnURL, 
-                    string cancelURL, 
-                    order order, 
-                    string notificationURL, 
-                    privateData[] privateDataList, 
-                    string languageCode, 
-                    buyer buyer, 
-                    owner owner, 
-                    string securityMode, 
-                    recurring recurring, 
-                    string merchantName, 
-                    subMerchant subMerchant, 
-                    string miscData, 
-                    string asynchronousRetryTimeout, 
-                    object userState) {
-            if ((this.doAuthorizationRedirectOperationCompleted == null)) {
-                this.doAuthorizationRedirectOperationCompleted = new System.Threading.SendOrPostCallback(this.OndoAuthorizationRedirectOperationCompleted);
-            }
-            this.InvokeAsync("doAuthorizationRedirect", new object[] {
-                        version,
-                        payment,
-                        card,
-                        returnURL,
-                        cancelURL,
-                        order,
-                        notificationURL,
-                        privateDataList,
-                        languageCode,
-                        buyer,
-                        owner,
-                        securityMode,
-                        recurring,
-                        merchantName,
-                        subMerchant,
-                        miscData,
-                        asynchronousRetryTimeout}, this.doAuthorizationRedirectOperationCompleted, userState);
-        }
-        
-        private void OndoAuthorizationRedirectOperationCompleted(object arg) {
-            if ((this.doAuthorizationRedirectCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.doAuthorizationRedirectCompleted(this, new doAuthorizationRedirectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3927,6 +3758,8 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
         
         private string authorizedCurrencyField;
         
+        private reattempt reattemptField;
+        
         /// <remarks/>
         public string number {
             get {
@@ -3966,6 +3799,78 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             }
             set {
                 this.authorizedCurrencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public reattempt reattempt {
+            get {
+                return this.reattemptField;
+            }
+            set {
+                this.reattemptField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class reattempt {
+        
+        private string indicatorField;
+        
+        private string frozenPeriodField;
+        
+        private string allowedDurationField;
+        
+        private string maxAllowedField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string indicator {
+            get {
+                return this.indicatorField;
+            }
+            set {
+                this.indicatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string frozenPeriod {
+            get {
+                return this.frozenPeriodField;
+            }
+            set {
+                this.frozenPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string allowedDuration {
+            get {
+                return this.allowedDurationField;
+            }
+            set {
+                this.allowedDurationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string maxAllowed {
+            get {
+                return this.maxAllowedField;
+            }
+            set {
+                this.maxAllowedField = value;
             }
         }
     }
@@ -6505,40 +6410,6 @@ namespace SDKPaylineDotNet.WebPaymentAPI {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string[])(this.results[7]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    public delegate void doAuthorizationRedirectCompletedEventHandler(object sender, doAuthorizationRedirectCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class doAuthorizationRedirectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal doAuthorizationRedirectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public result Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((result)(this.results[0]));
-            }
-        }
-        
-        /// <remarks/>
-        public string redirectURL {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[1]));
             }
         }
     }

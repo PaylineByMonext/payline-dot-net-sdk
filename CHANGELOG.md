@@ -1,10 +1,17 @@
 ﻿---------------------------------------- 
 
+* 4.8.11 (2023-09-18)
+  * Update WSDL from 4.75 to 4.76
+  * Add reattempt to authorization
+  * Move doAuthorizationRedirect from WebPaymentAPI to DirectPaymentAPI
+
+---------------------------------------- 
+
 * 4.8.10 (2023-07-03)
   * Update WSDL from 4.74 to 4.75
   * Add miscData to doCredit
   * Add miscData to doDebit
-  
+
 ---------------------------------------- 
 
 * 4.8.9 (2023-03-31)
