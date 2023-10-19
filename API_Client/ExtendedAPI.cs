@@ -3473,6 +3473,8 @@ namespace SDKPaylineDotNet.ExtendedAPI {
         
         private string authorizedCurrencyField;
         
+        private reattempt reattemptField;
+        
         /// <remarks/>
         public string number {
             get {
@@ -3512,6 +3514,78 @@ namespace SDKPaylineDotNet.ExtendedAPI {
             }
             set {
                 this.authorizedCurrencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public reattempt reattempt {
+            get {
+                return this.reattemptField;
+            }
+            set {
+                this.reattemptField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.7.2558.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://obj.ws.payline.experian.com")]
+    public partial class reattempt {
+        
+        private string indicatorField;
+        
+        private string frozenPeriodField;
+        
+        private string allowedDurationField;
+        
+        private string maxAllowedField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string indicator {
+            get {
+                return this.indicatorField;
+            }
+            set {
+                this.indicatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string frozenPeriod {
+            get {
+                return this.frozenPeriodField;
+            }
+            set {
+                this.frozenPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string allowedDuration {
+            get {
+                return this.allowedDurationField;
+            }
+            set {
+                this.allowedDurationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string maxAllowed {
+            get {
+                return this.maxAllowedField;
+            }
+            set {
+                this.maxAllowedField = value;
             }
         }
     }
